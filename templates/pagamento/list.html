@@ -1,0 +1,36 @@
+{% extends '_base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Pagamentos</h2>
+    <a href="{% url 'pagamento_create' %}" class="btn btn-success mb-3">Novo Pagamento</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Funcionário</th>
+                <th>Data</th>
+                <th>Valor Total</th>
+                <th>Vale</th>
+                <th>Bônus</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pagamento in pagamentos %}
+            <tr>
+                <td>{{ pagamento.funcionario.nome }}</td>
+                <td>{{ pagamento.data_pagamento }}</td>
+                <td>R$ {{ pagamento.valor_total }}</td>
+                <td>R$ {{ pagamento.vale_desconto }}</td>
+                <td>R$ {{ pagamento.bonus_comissao }}</td>
+                <td>
+                    <a href="{% url 'pagamento_update' pagamento.pk %}" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="{% url 'pagamento_delete' pagamento.pk %}" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="6">Nenhum pagamento cadastrado.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
