@@ -1,8 +1,7 @@
 from django import forms
 from .models import Funcionario
 
-
 class FuncionarioForm(forms.ModelForm):
     class Meta:
         model = Funcionario
-        fields = ('nome', 'funcao', 'salario', 'chave_pix', 'banco')
+        fields = '__all__'  
