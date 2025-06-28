@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap4",
 
     'funcionario',
+    'pagamento',
 ]
 
 MIDDLEWARE = [
