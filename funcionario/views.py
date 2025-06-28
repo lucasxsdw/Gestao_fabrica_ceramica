@@ -17,9 +17,9 @@ def add_Func(request):
         form = FuncionarioForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('listar_funcionarios')
-        else:
-            form = FuncionarioForm()
+            return redirect('funcionario:listar_funcionarios')
+    else:
+        form = FuncionarioForm()
         
     return render(request, 'funcionario/form.html', {'form': form})
 
@@ -30,7 +30,7 @@ def editar_func(request, id):
         form = FuncionarioForm(request.POST, instance=func)
         if form.is_valid():
              form.save()
-             return redirect('listar_funcionarios')
+             return redirect('funcionario:listar_funcionarios')
     else:
         form = FuncionarioForm(instance=func)
     return render(request, 'funcionario/form.html', {'form': form})
@@ -39,14 +39,14 @@ def editar_func(request, id):
 
 def excluir_func(request, id):
     funcionario = get_object_or_404(Funcionario, pk=id)
-    if request.method == 'POST':
-        funcionario.delete()
-        messages.success(request, "Funcionário excluído com sucesso!")
-        return redirect('listar_funcionarios')
-    return render(request, 'funcionario/confirmar_exclusao.html', {'funcionario': funcionario})
+    funcionario.delete()
+    messages.success(request, "Funcionário excluído com sucesso!")
+    return redirect('funcionario:listar_funcionarios')
+
+    
 
     
 def detail_func(request, pk):
     funcionario = get_object_or_404(Funcionario, pk=pk)
-    return render(request, 'funcionario/funcionario_detail.html', {'funcionario': funcionario})
+    return render(request, 'funcionario/funcionario_detalhar.html', {'funcionario': funcionario})
 

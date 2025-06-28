@@ -1,6 +1,9 @@
 from django.urls import path
 from . import views
 
+app_name = 'funcionario'
+
+
 urlpatterns = [
     path('', views.listar_funcionarios, name='listar_funcionarios'),              
     path('adicionar/', views.add_Func, name='adicionar_funcionario'),             

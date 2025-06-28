@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags%}
+
+
+{% block content %}
+   <h1 class="text-dark">Cadastro de Funcionario</h1>
+   <div class="card-body border">
+     <h2 class=" text-dark">Informações Pessoais</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                        {% for field in form %}
+                            <div class="col-md-6">
+                                {{ field | as_crispy_field }}
+                            </div>
+                        {% endfor %}
+                        </div>
+                        <input type="submit" value="Salvar" class="btn btn-dark float-end">
+                    </form>
+                </div>
+{% endblock %}
