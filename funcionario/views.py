@@ -17,7 +17,7 @@ def add_Func(request):
         form = FuncionarioForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect()
+            return redirect('listar_funcionarios')
         else:
             form = FuncionarioForm()
         
@@ -30,7 +30,7 @@ def editar_func(request, id):
         form = FuncionarioForm(request.POST, instance=func)
         if form.is_valid():
              form.save()
-             return redirect()
+             return redirect('listar_funcionarios')
     else:
         form = FuncionarioForm(instance=func)
     return render(request, 'funcionario/form.html', {'form': form})
@@ -42,7 +42,7 @@ def excluir_func(request, id):
     if request.method == 'POST':
         funcionario.delete()
         messages.success(request, "Funcionário excluído com sucesso!")
-        return redirect()
+        return redirect('listar_funcionarios')
     return render(request, 'funcionario/confirmar_exclusao.html', {'funcionario': funcionario})
 
     
