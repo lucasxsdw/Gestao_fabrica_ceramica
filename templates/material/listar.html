@@ -35,13 +35,13 @@
                                 <td>{{ material.quantidade }}</td>
                                 <td class="text-center">
                                     <a href="{% url 'material:detalhar' material.id %}" class="btn btn-warning m-1" aria-label="Ver">
-                                        <i class="fa fa-eye"></i>
+                                        <i class="fas fa-eye"></i>
                                     </a>
                                     <a href="{% url 'material:editar' material.id %}" class="btn btn-info m-1" aria-label="Editar">
-                                        <i class="fa fa-pen"></i>
+                                        <i class="fas fa-pen"></i>
                                     </a>
                                     <a href="{% url 'material:excluir' material.id %}" class="btn btn-danger m-1" aria-label="Excluir">
-                                        <i class="fa fa-trash"></i>
+                                        <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -51,6 +51,4 @@
             </div>
         </div>
     </div>
-
-
 {% endblock %}
