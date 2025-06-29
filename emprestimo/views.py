@@ -3,8 +3,8 @@ from .models import Emprestimo
 from .forms import EmprestimoForm
 
 def listar(request):
-    materiais = Emprestimo.objects.all()
-    return render(request, 'emprestimo/listar.html', {'materiais': materiais})
+    emprestimos = Emprestimo.objects.all()
+    return render(request, 'emprestimo/listar.html', {'emprestimos': emprestimos})
 
 def detalhar(request, id):
     emprestimo = get_object_or_404(Emprestimo, id=id)

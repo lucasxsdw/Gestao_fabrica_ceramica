@@ -20,7 +20,27 @@
             </div>
         </div>
         <div class="card-body">
-           
+            <h2>Informações do material</h2>
+            <div>
+                <span class="d-block font-weight-bold">Nome: </span>
+                <p>{{ material.nome }}</p>
+            </div>
+            <div>
+                <span class="d-block font-weight-bold">Certificado de aprovação: </span>
+                <p>{{ material.certificado_aprovacao }}</p>
+            </div>
+            <div>
+                <span class="d-block font-weight-bold">Dias de emprestimo: </span>
+                <p>{{ material.dias_de_emprestimo }} dias</p>
+            </div>
+            <div>
+                <span class="d-block font-weight-bold">Quantidade: </span>
+                <p>{{ material.quantidade }}</p>
+            </div>
+            <div>
+                <span class="d-block font-weight-bold">Fabricante: </span>
+                <p>{{ material.fabricante }}</p>
+            </div>
         </div>
     </div>
 {% endblock %}

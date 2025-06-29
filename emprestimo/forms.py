@@ -6,6 +6,6 @@ class EmprestimoForm(forms.ModelForm):
         model = Emprestimo
         fields = '__all__'
         widgets = {
-            'data_emprestimo': forms.DateInput(attrs={'type': 'date'}),
-            'data_devolucao': forms.DateInput(attrs={'type': 'date'})
+            'data_emprestimo': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
+            'data_devolucao': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
         }

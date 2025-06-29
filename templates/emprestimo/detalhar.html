@@ -3,6 +3,25 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-
+    <div class="card">
+        <div class="card-header d-flex flex-column justify-content-between flex-sm-row align-items-center">
+            <div class="mr-3">
+                <h1 class="h2 text-dark font-weight-bold m-0">Empréstimo de material</h1>
+            </div>
+            <div>
+                <a class="btn btn-info my-2" href="{% url 'emprestimo:editar' emprestimo.id %}">
+                    <i class="fas fa-pen fa-xs"></i>
+                    Editar
+                </a>
+                <button class="btn btn-danger my-2" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'emprestimo:excluir' emprestimo.id %}'>
+                    <i class="fas fa-trash fa-xs"></i>
+                    Excluir
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            
+        </div>
+    </div>
 
 {% endblock %}

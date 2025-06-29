@@ -1,11 +1,58 @@
 {% extends "_base.html" %}
 
-{% block title %}{% endblock %}
+{% block title %}Empréstimos de materiais{% endblock %}
 
 {% block content %}
-
-    {% for m in materiais %}
-        {{ m }}
-    {% endfor %}
+<div class="card">
+        <div class="card-header d-flex flex-column justify-content-between flex-sm-row align-items-center">
+            <div class="mr-3">
+                <h1 class="h2 text-dark font-weight-bold m-0">Empréstimos de materiais</h1>
+                <p class="m-0">Controle de empréstimos e devoluções de equipamentos</p>
+            </div>
+            <a class="btn btn-success my-2" href="{% url 'emprestimo:adicionar' %}">
+                <i class="fas fa-plus fa-xs"></i>
+                Adicionar
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Funcionário</th>
+                            <th>Material</th>
+                            <th>Data de empréstimo</th>
+                            <th>Data de entrega</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for emprestimo in emprestimos %}
+                            <tr>
+                                <td>{{ emprestimo.funcionario.nome }}</td>
+                                <td>{{ emprestimo.material.nome }}</td>
+                                <td>{{ emprestimo.data_emprestimo }}</td>
+                                <td>{{ emprestimo.data_devolucao }}</td>
+                                <td>{{ emprestimo.status }}</td>
+                                <td class="text-center">
+                                    <a href="{% url 'emprestimo:detalhar' emprestimo.id %}" class="btn btn-warning m-1" aria-label="Ver">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{% url 'emprestimo:editar' emprestimo.id %}" class="btn btn-info m-1" aria-label="Editar">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+                                    <button class="btn btn-danger m-1" aria-label="Excluir" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'emprestimo:excluir' emprestimo.id %}'>
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
 
 {% endblock %}
