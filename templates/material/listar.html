@@ -40,6 +40,9 @@
                                     <a href="{% url 'material:editar' material.id %}" class="btn btn-info m-1" aria-label="Editar">
                                         <i class="fa fa-pen"></i>
                                     </a>
+                                    <a href="{% url 'material:excluir' material.id %}" class="btn btn-danger m-1" aria-label="Excluir">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
                                 </td>
                             </tr>
                         {% endfor %}

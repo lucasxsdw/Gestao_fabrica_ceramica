@@ -6,17 +6,21 @@
     <div class="card">
         <div class="card-header d-flex flex-column justify-content-between flex-sm-row align-items-center">
             <div class="mr-3">
-                <h2 class="text-dark font-weight-bold m-0">Materiais</h2>
-                <p class="m-0">Controle de equipamentos de proteção individual</p>
+                <h1 class="h2 text-dark font-weight-bold m-0">Material</h1>
             </div>
-            <a class="btn btn-success my-2" href="{% url 'material:adicionar' %}">
-                <i class="fas fa-plus fa-xs"></i>
-                Adicionar
-            </a>
+            <div>
+                <a class="btn btn-info my-2" href="{% url 'material:editar' material.id %}">
+                    <i class="fas fa-pen fa-xs"></i>
+                    Editar
+                </a>
+                <a class="btn btn-danger my-2" href="{% url 'material:excluir' material.id %}">
+                    <i class="fas fa-trash fa-xs"></i>
+                    Excluir
+                </a>
+            </div>
         </div>
         <div class="card-body">
            
         </div>
     </div>
-
 {% endblock %}
