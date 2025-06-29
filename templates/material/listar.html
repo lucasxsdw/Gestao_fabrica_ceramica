@@ -40,9 +40,9 @@
                                     <a href="{% url 'material:editar' material.id %}" class="btn btn-info m-1" aria-label="Editar">
                                         <i class="fas fa-pen"></i>
                                     </a>
-                                    <a href="{% url 'material:excluir' material.id %}" class="btn btn-danger m-1" aria-label="Excluir">
+                                    <button class="btn btn-danger m-1" aria-label="Excluir" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'material:excluir' material.id %}'>
                                         <i class="fas fa-trash"></i>
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         {% endfor %}
