@@ -1,0 +1,33 @@
+{% extends "_base.html" %}
+
+{% block title %} Materiais {% endblock %}
+
+{% block content %}
+    <div class="card">
+        
+        <div class="card-body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>CA</th>
+                        <th>Dias de empréstimo</th>
+                        <th>Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for material in materiais %}
+                        <tr>
+                            <td>{{ material.nome }}</td>
+                            <td>{{ material.certificado_aprovacao }}</td>
+                            <td>{{ material.dias_de_emprestimo }}</td>
+                            <td>{{ material.quantidade }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+{% endblock %}

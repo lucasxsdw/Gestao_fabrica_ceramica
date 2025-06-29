@@ -23,4 +23,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('funcionario/', include('funcionario.urls')),
     path('pagamento/', include('pagamento.urls')),
+    path('material/', include('material.urls')),
+    path('emprestimo/', include('emprestimo.urls')),
 ]
