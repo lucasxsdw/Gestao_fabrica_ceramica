@@ -3,15 +3,15 @@ from django.db import models
 class Funcionario(models.Model):
 
     FREQUENCIA_PAGAMENTO_CHOICES = [
-        ('SE', 'Semanal'),
-        ('QI', 'Quinzenal'),
-        ('ME', 'Mensal'),
+        ('Semanal', 'Semanal'),
+        ('Quinzenal', 'Quinzenal'),
+        ('Mensal', 'Mensal'),
     ]
 
     STATUS_CHOICES = [
-        ('AT', 'Ativo'),
-        ('IN', 'Inativo'),
-        ('FA', 'Férias'),
+        ('AtivoAT', 'Ativo'),
+        ('Inativo', 'Inativo'),
+        ('Férias', 'Férias'),
     ]
 
 
@@ -24,7 +24,7 @@ class Funcionario(models.Model):
     cpf = models.CharField(max_length=11, verbose_name="CPF")
     data_admissao = models.DateField(verbose_name="Data de admissão")
     frequencia_pagamento = models.CharField(max_length=20,choices=FREQUENCIA_PAGAMENTO_CHOICES, verbose_name="Frequência de pagamento")
-    status = models.CharField(max_length=2,choices=STATUS_CHOICES, verbose_name="Status")
+    status = models.CharField(max_length=10,choices=STATUS_CHOICES, verbose_name="Status")
 
 
     def __str__(self):

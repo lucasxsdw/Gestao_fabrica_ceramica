@@ -1,21 +1,74 @@
 {% extends "_base.html" %}
-{% load crispy_forms_tags%}
-
+{% load crispy_forms_tags %}
 
 {% block content %}
-   <h1 class="text-dark">Cadastro de Funcionario</h1>
-   <div class="card-body border">
-     <h2 class=" text-dark">Informações Pessoais</h2>
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        <div class="row">
-                        {% for field in form %}
-                            <div class="col-md-6">
-                                {{ field | as_crispy_field }}
-                            </div>
-                        {% endfor %}
-                        </div>
-                        <input type="submit" value="Salvar" class="btn btn-dark float-end">
-                    </form>
-                </div>
+<h2 class="h3 font-weight-bold text-dark">Cadastro de Funcionário</h2>
+<div class="card-body border">
+  <h3 class="h4 font-weight-bold text-dark alert alert-light">Informações Pessoais</h3>
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="row">
+     
+      <div class="col-md-6">
+        {{ form.nome|as_crispy_field }}
+      </div>
+     
+      <div class="col-md-6">
+        {{ form.funcao|as_crispy_field }}
+      </div>
+      
+      <div class="col-md-6">
+        {{ form.salario|as_crispy_field }}
+      </div>
+      
+      <div class="col-md-6">
+        {{ form.data_admissao|as_crispy_field }}
+      </div>
+
+      <div class="col-md-6">
+        {{ form.contato|as_crispy_field }}
+      </div>
+
+       <div class="col-md-6">
+        {{ form.cpf|as_crispy_field }}
+      </div>
+
+
+
+    </div>
+
+ <h3 class="text-primary h4 font-weight-bold alert alert-primary mt-3">Informações de Pagamento</h3>
+    <div class="row">
+     
+        <div class="col-md-6 ">
+            {{ form.chave_pix|as_crispy_field }}
+        </div>
+        
+        <div class="col-md-6">
+            {{ form.banco|as_crispy_field }}
+        </div>
+        
+        <div class="col-md-6">
+            {{ form.frequencia_pagamento|as_crispy_field }}
+        </div>
+
+        <div class="col-md-6">
+            {{ form.status|as_crispy_field }}
+        </div>
+
+
+    </div>
+   
+
+ 
+        
+            
+ <button type="submit" class="btn btn-success my-1">
+  <i class="fas fa-plus fa-xs">Adicionar</i>
+ </button>
+        
+  </form>
+
+
+</div>
 {% endblock %}

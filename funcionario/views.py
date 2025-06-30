@@ -48,5 +48,5 @@ def excluir_func(request, id):
     
 def detail_func(request, pk):
     funcionario = get_object_or_404(Funcionario, pk=pk)
-    return render(request, 'funcionario/funcionario_detalhar.html', {'funcionario': funcionario})
+    return render(request, 'funcionario/detalhar.html', {'funcionario': funcionario})
 

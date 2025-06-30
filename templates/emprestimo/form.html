@@ -1,0 +1,42 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    {% if form.errors %}
+        <div class="bg-danger text-white rounded p-3 mb-3" role="alert">
+            <i class="fas fa-exclamation-triangle"></i>
+            Corrija os erros abaixo.
+        </div>
+    {%  endif %}
+    <div class="card">
+        <div class="card-header">
+            <h1 class="h2 text-dark font-weight-bold m-0">Empréstimo de material</h1>
+        </div>
+        <div class="card-body">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form.material | as_crispy_field }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form.funcionario | as_crispy_field }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form.data_emprestimo | as_crispy_field }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form.data_devolucao | as_crispy_field }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form.status | as_crispy_field }}
+                    </div>
+                </div>
+                <input type="submit" value="Salvar" class="btn btn-success float-right mx-1">
+                <a class="btn btn-secondary float-right mx-1" href="{% url 'material:listar' %}">Cancelar</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
