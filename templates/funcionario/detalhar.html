@@ -8,11 +8,26 @@
             <div class="mr-3">
                 <h1 class="h2 text-dark font-weight-bold m-0">Destalhes do Funcionário</h1>
             </div>
+
+             <div>
+                <a class="btn btn-info my-2" href="{% url 'funcionario:editar_funcionario' funcionario.id %}">
+                    <i class="fas fa-pen fa-xs"></i>
+                    Editar
+                </a>
+                <button class="btn btn-danger my-2" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'funcionario:listar' funcionario.id %}'>
+                    <i class="fas fa-trash fa-xs"></i>
+                    Excluir
+                </button>
+            </div>
             
                 
         </div>
         <div class="card-body">
-            <h2>{{funcionario.nome}}</h2>
+            <div class=" alert alert-primary mt-3">
+                <h2 class="font-weight-bold">{{funcionario.nome}}</h2>
+                <p>{{funcionario.funcao}}</p>
+            </div>
+           
           <div class="row">
                 <div class="col-md-4">
                     <p class="font-weight-bold text-dark">Nome: <span class="font-weight-normal">{{ funcionario.nome }}</span></p>

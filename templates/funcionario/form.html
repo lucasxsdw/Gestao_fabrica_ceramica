@@ -2,9 +2,22 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<h2 class="h3 font-weight-bold text-dark">Cadastro de Funcionário</h2>
+  {% if modo == 'editar' %}
+    <span class="badge bg-warning text-dark mb-2 font-weight-bold ">Modo de Edição</span>
+  {% else %}
+    <h2 class="h3 font-weight-bold text-dark">Cadastro de Funcionário</h2>
+  {% endif %}
+
+
+    <!--trocar de cor quando estiver editando-->
+<div class="card-body border {% if modo == 'editar' %} bg-warning-sutle{% endif %}">
 <div class="card-body border">
-  <h3 class="h4 font-weight-bold text-dark alert alert-light">Informações Pessoais</h3>
+
+
+
+
+  <h3 class="h4 font-weight-bold text-dark alert {% if modo == 'editar' %}alert-warning{% else %}alert-primary{% endif %}">Informações Pessoais</h3>
+  
   <form action="" method="post">
     {% csrf_token %}
     <div class="row">
@@ -37,8 +50,10 @@
 
     </div>
 
- <h3 class="text-primary h4 font-weight-bold alert alert-primary mt-3">Informações de Pagamento</h3>
-    <div class="row">
+  <h3 class="h4 font-weight-bold text-dark alert {% if modo == 'editar' %}alert-warning{% else %}alert-primary{% endif %}">Informações de Pagamento</h3>
+   
+ 
+  <div class="row">
      
         <div class="col-md-6 ">
             {{ form.chave_pix|as_crispy_field }}
@@ -62,13 +77,19 @@
 
  
         
-            
- <button type="submit" class="btn btn-success my-1">
-  <i class="fas fa-plus fa-xs">Adicionar</i>
- </button>
-        
-  </form>
+              
+ 
+    <button type="submit" class="btn {% if modo == 'editar' %}btn-warning{% else %}btn-success{% endif %} my-1">
+        {% if modo == 'editar' %}
+            <i class="fas fa-edit fa-xs"></i> Salvar
+        {% else %}
+            <i class="fas fa-plus fa-xs"></i> Adicionar
+        {% endif %}
+    </button>
+
+</form>
 
 
+</div>
 </div>
 {% endblock %}
