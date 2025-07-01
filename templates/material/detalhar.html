@@ -1,0 +1,46 @@
+{% extends "_base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header d-flex flex-column justify-content-between flex-sm-row align-items-center">
+            <div class="mr-3">
+                <h1 class="h2 text-dark font-weight-bold m-0">Material</h1>
+            </div>
+            <div>
+                <a class="btn btn-info my-2" href="{% url 'material:editar' material.id %}">
+                    <i class="fas fa-pen fa-xs"></i>
+                    Editar
+                </a>
+                <button class="btn btn-danger my-2" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'material:excluir' material.id %}'>
+                    <i class="fas fa-trash fa-xs"></i>
+                    Excluir
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <h2>Informações do material</h2>
+            <div>
+                <span class="d-block font-weight-bold">Nome: </span>
+                <p>{{ material.nome }}</p>
+            </div>
+            <div>
+                <span class="d-block font-weight-bold">Certificado de aprovação: </span>
+                <p>{{ material.certificado_aprovacao }}</p>
+            </div>
+            <div>
+                <span class="d-block font-weight-bold">Dias de emprestimo: </span>
+                <p>{{ material.dias_de_emprestimo }} dias</p>
+            </div>
+            <div>
+                <span class="d-block font-weight-bold">Quantidade: </span>
+                <p>{{ material.quantidade }}</p>
+            </div>
+            <div>
+                <span class="d-block font-weight-bold">Fabricante: </span>
+                <p>{{ material.fabricante }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
