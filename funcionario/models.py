@@ -20,7 +20,7 @@ class Funcionario(models.Model):
     salario = models.DecimalField(decimal_places=2, max_digits=7, verbose_name="Salário")
     chave_pix = models.CharField(max_length=255, verbose_name="Chave pix")
     banco = models.CharField(max_length=255, verbose_name="Banco")
-    contato = models.CharField(max_length=20, verbose_name="Contato")
+    contato = models.CharField(max_length=20, default='Sem contato',verbose_name="Contato")
     cpf = models.CharField(max_length=11, verbose_name="CPF")
     data_admissao = models.DateField(verbose_name="Data de admissão")
     frequencia_pagamento = models.CharField(max_length=20,choices=FREQUENCIA_PAGAMENTO_CHOICES, verbose_name="Frequência de pagamento")

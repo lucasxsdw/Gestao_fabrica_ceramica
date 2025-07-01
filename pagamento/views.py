@@ -27,3 +27,9 @@ def pagamento_delete(request, pk):
         pagamento.delete()
         return redirect('pagamento_list')
     return render(request, 'pagamento/confirm_delete.html', {'object': pagamento})
+
+def pagamento_list(request):
+    pagamentos = Pagamento.objects.all()
+    for p in pagamentos:
+        p.total_calculado = p.funcionario.salario - p.vale_desconto + p.bonus_comissao
+    return render(request, 'pagamento/list.html', {'pagamentos': pagamentos})
