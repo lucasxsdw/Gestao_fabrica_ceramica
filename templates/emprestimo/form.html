@@ -1,11 +1,11 @@
 {% extends "_base.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}{% endblock %}
+{% block title %}Empréstimo de material{% endblock %}
 
 {% block content %}
     {% if form.errors %}
-        <div class="bg-danger text-white rounded p-3 mb-3" role="alert">
+        <div class="alert alert-danger alert-dismissible" role="alert">
             <i class="fas fa-exclamation-triangle"></i>
             Corrija os erros abaixo.
         </div>

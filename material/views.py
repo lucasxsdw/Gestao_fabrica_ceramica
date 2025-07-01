@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Material
 from .forms import MaterialForm
@@ -35,3 +36,9 @@ def excluir(request, id):
     material = get_object_or_404(Material, id=id)
     material.delete()
     return redirect('material:listar')
+
+def obter_dias_emprestimo(request, id):
+    material = get_object_or_404(Material, id=id)
+    quantidade_dias = material.dias_de_emprestimo
+    contexto = {'quantidade_dias': quantidade_dias}
+    return JsonResponse(contexto)
