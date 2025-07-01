@@ -1,12 +1,39 @@
-{% extends '_base.html' %}
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Pagamento{% endblock %}
+
 {% block content %}
-<div class="container mt-4">
-    <h2>Pagamento</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Salvar</button>
-        <a href="{% url 'pagamento_list' %}" class="btn btn-secondary">Voltar</a>
-    </form>
-</div>
+    {% if form.errors %}
+        <div class="bg-danger text-white rounded p-3 mb-3" role="alert">
+            <i class="fas fa-exclamation-triangle"></i>
+            Corrija os erros abaixo.
+        </div>
+    {% endif %}
+    <div class="card">
+        <div class="card-header">
+            <h1 class="h2 text-dark font-weight-bold m-0">Pagamento</h1>
+        </div>
+        <div class="card-body">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form.funcionario | as_crispy_field }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form.data_pagamento | as_crispy_field }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form.vale_desconto | as_crispy_field }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form.bonus_comissao | as_crispy_field }}
+                    </div>
+                </div>
+                <input type="submit" value="Salvar" class="btn btn-success float-right mx-1">
+                <a class="btn btn-secondary float-right mx-1" href="{% url 'pagamento:listar_pagamentos' %}">Cancelar</a>
+            </form>
+        </div>
+    </div>
 {% endblock %}

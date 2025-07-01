@@ -1,0 +1,78 @@
+{% extends "_base.html" %}
+{% block title %}Detalhes do Pagamento{% endblock %}
+
+{% block content %}
+<div class="container mb-5">
+    <div class="card shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
+            <h1 class="h4 text-dark font-weight-bold m-0">Pagamento</h1>
+            <div class="mt-2 mt-sm-0">
+                <a class="btn btn-info btn-sm me-2" href="{% url 'pagamento:editar_pagamento' pagamento.id %}">
+                    <i class="fas fa-pen"></i> Editar
+                </a>
+                <a class="btn btn-danger btn-sm" href="{% url 'pagamento:excluir_pagamento' pagamento.id %}">
+                    <i class="fas fa-trash"></i> Excluir
+                </a>
+            </div>
+        </div>
+
+        <div class="card-body text-center">
+            <div class="rounded-circle mx-auto mb-3"
+                style="width:80px;height:80px;background:linear-gradient(135deg,#89f7fe,#66a6ff);"></div>
+            <h4 class="mb-0">{{ pagamento.funcionario.nome }}</h4>
+            <small class="text-muted">{{ pagamento.data_pagamento|date:"d \d\e F \d\e Y" }}</small>
+
+            <div class="row mt-4 g-3">
+                <div class="col-md-4">
+                    <div class="p-3 rounded shadow-sm border-start border-4 border-success">
+                        <h6 class="mb-1">SALÁRIO</h6>
+                        <strong>R$ {{ pagamento.funcionario.salario|floatformat:2 }}</strong>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 rounded shadow-sm border-start border-4 border-warning">
+                        <h6 class="mb-1">VALE</h6>
+                        <strong>R$ {{ pagamento.vale_desconto|floatformat:2 }}</strong>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 rounded shadow-sm border-start border-4 border-primary">
+                        <h6 class="mb-1">BÔNUS</h6>
+                        <strong>R$ {{ pagamento.bonus_comissao|floatformat:2 }}</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-100 mb-3"></div>
+
+            <div class="col-md-3 mx-auto">
+                <div class="bg-success text-white p-4 rounded text-center mb-4">
+                    <h6>TOTAL CALCULADO</h6>
+                    <h3>R$ {{ pagamento.total_calculado|floatformat:2 }}</h3>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <h6 class="text-uppercase mb-2">Chave Pix</h6>
+                <div class="fs-5 fw-bold bg-light px-4 py-2 rounded d-inline-block mb-2">
+                    {{ pagamento.funcionario.chave_pix }}
+                </div>
+                <br>
+                <button class="btn btn-outline-primary" onclick="copiarPix('{{ pagamento.funcionario.chave_pix }}')">
+                    <i class="fas fa-copy"></i> Copiar Chave
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function copiarPix(chave) {
+        navigator.clipboard.writeText(chave).then(function () {
+            alert("Chave Pix copiada!");
+        }, function (err) {
+            alert("Erro ao copiar: ", err);
+        });
+    }
+</script>
+{% endblock %}

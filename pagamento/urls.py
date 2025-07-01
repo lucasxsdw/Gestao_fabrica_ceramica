@@ -1,9 +1,14 @@
 from django.urls import path
 from . import views
 
+app_name = 'pagamento'
+
 urlpatterns = [
-    path('', views.pagamento_list, name='pagamento_list'),
-    path('novo/', views.pagamento_create, name='pagamento_create'),
-    path('<int:pk>/editar/', views.pagamento_update, name='pagamento_update'),
-    path('<int:pk>/deletar/', views.pagamento_delete, name='pagamento_delete'),
+    path('', views.listar, name='listar_pagamentos'),
+    path('<int:id>', views.detalhar, name='detalhar_pagamento'),
+    path('adicionar/', views.adicionar, name='adicionar_pagamento'),
+    path('editar/<int:id>', views.editar, name='editar_pagamento'),
+    path('excluir/<int:id>', views.excluir, name='excluir_pagamento'),
+
+    path('toggle/<int:id>/', views.pagamento_toggle, name='pagamento_toggle'),
 ]
