@@ -14,7 +14,7 @@
                     <i class="fas fa-pen fa-xs"></i>
                     Editar
                 </a>
-                <button class="btn btn-danger my-2" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'funcionario:listar' funcionario.id %}'>
+                <button class="btn btn-danger my-2" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'funcionario:listar' %}'>
                     <i class="fas fa-trash fa-xs"></i>
                     Excluir
                 </button>
@@ -23,10 +23,20 @@
                 
         </div>
         <div class="card-body">
-            <div class=" alert alert-primary mt-3">
-                <h2 class="font-weight-bold">{{funcionario.nome}}</h2>
-                <p>{{funcionario.funcao}}</p>
+
+              <!-- Foto do funcionário -->
+        <div class="alert alert-primary mt-3 d-flex align-items-center">
+            {% if funcionario.foto %}
+                <img src="{{ funcionario.foto.url }}" alt="Foto de {{ funcionario.nome }}" 
+                    class="rounded-circle border me-3" width="50" height="50" />
+            {% endif %}
+            <div>
+                <h2 class="font-weight-bold mb-0">{{ funcionario.nome }}</h2>
+                <p class="mb-0">{{ funcionario.funcao }}</p>
             </div>
+        </div>
+
+
            
           <div class="row">
                 <div class="col-md-4">

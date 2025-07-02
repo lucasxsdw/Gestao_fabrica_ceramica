@@ -14,7 +14,7 @@ def listar_funcionarios(request):
 
 def add_Func(request):
     if request.method == 'POST':
-        form = FuncionarioForm(request.POST)
+        form = FuncionarioForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('funcionario:listar_funcionarios')
@@ -27,7 +27,7 @@ def add_Func(request):
 def editar_func(request, id):
     func = get_object_or_404(Funcionario, pk=id)
     if request.method == 'POST':
-        form = FuncionarioForm(request.POST, instance=func)
+        form = FuncionarioForm(request.POST, request.FILES, instance=func)
         if form.is_valid():
              form.save()
              return redirect('funcionario:listar_funcionarios')
