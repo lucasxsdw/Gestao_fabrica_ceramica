@@ -45,19 +45,17 @@ function definirDataDevolucao(){
 
 function calcularData(data, quantidadeDias){
   let dataEntrega = new Date(data);
-  dataEntrega.setDate(dataEntrega.getDate() + quantidadeDias);
+  dataEntrega.setUTCDate(dataEntrega.getUTCDate() + quantidadeDias);
   return dataEntrega;
 }
 
 function formatarData(data) {
-  let dia = data.getDate();
-  let mes = data.getMonth() + 1;
-  let ano = data.getFullYear();
+  let dia = data.getUTCDate();
+  let mes = data.getUTCMonth() + 1;
+  let ano = data.getUTCFullYear();
   
   dia = String(dia).padStart(2, '0');
   mes = String(mes).padStart(2, '0');
-
-  console.log(`${dia}/${mes}/${ano}`);
   
-  return `${dia}/${mes}/${ano}`;
+  return `${ano}-${mes}-${dia}`;
 }

@@ -16,6 +16,6 @@ class Emprestimo(models.Model):
     data_devolucao = models.DateField(verbose_name='Data de devolução', null=True, blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='ativo', verbose_name='Status')
 
-    def calcular_data_devolucao(self):
+    def definir_data_devolucao(self):
         if self.material and self.data_emprestimo:
             self.data_devolucao = self.data_emprestimo + datetime.timedelta(days=self.material.dias_de_emprestimo)

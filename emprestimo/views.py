@@ -14,7 +14,9 @@ def adicionar(request):
     if request.method == 'POST':
         form = EmprestimoForm(request.POST)
         if form.is_valid():
-            form.save()
+            emprestimo = form.save(commit=False)
+            emprestimo.definir_data_devolucao()
+            emprestimo.save()
             return redirect('listar_emprestimos')
     else:
         form = EmprestimoForm()
@@ -25,7 +27,9 @@ def editar(request, id):
     if request.method == 'POST':
         form = EmprestimoForm(request.POST, instance=emprestimo)
         if form.is_valid():
-            form.save()
+            emprestimo = form.save(commit=False)
+            emprestimo.definir_data_devolucao()
+            emprestimo.save()
             return redirect('listar_emprestimos')
     else:
         form = EmprestimoForm(instance=emprestimo)
