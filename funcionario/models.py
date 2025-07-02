@@ -21,11 +21,11 @@ class Funcionario(models.Model):
     chave_pix = models.CharField(max_length=255, verbose_name="Chave pix")
     banco = models.CharField(max_length=255, verbose_name="Banco")
     contato = models.CharField(max_length=20, verbose_name="Contato")
-    cpf = models.CharField(max_length=15, verbose_name="CPF")
+    cpf = models.CharField(max_length=14, verbose_name="CPF")
     data_admissao = models.DateField(verbose_name="Data de admissão")
     frequencia_pagamento = models.CharField(max_length=14,choices=FREQUENCIA_PAGAMENTO_CHOICES, verbose_name="Frequência de pagamento")
     status = models.CharField(max_length=10,choices=STATUS_CHOICES, verbose_name="Status")
-
+    foto = models.ImageField(upload_to='fotos_funcionarios/', blank=True, null=True, verbose_name='Foto')
 
     def __str__(self):
         return self.nome
