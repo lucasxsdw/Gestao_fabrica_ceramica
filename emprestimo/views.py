@@ -15,7 +15,7 @@ def adicionar(request):
         form = EmprestimoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('emprestimo:listar')
+            return redirect('listar_emprestimos')
     else:
         form = EmprestimoForm()
     return render(request, 'emprestimo/form.html', {'form': form})
@@ -26,7 +26,7 @@ def editar(request, id):
         form = EmprestimoForm(request.POST, instance=emprestimo)
         if form.is_valid():
             form.save()
-            return redirect('emprestimo:listar')
+            return redirect('listar_emprestimos')
     else:
         form = EmprestimoForm(instance=emprestimo)
     return render(request, 'emprestimo/form.html', {'form': form})
@@ -34,4 +34,4 @@ def editar(request, id):
 def excluir(request, id):
     emprestimo = get_object_or_404(Emprestimo, id=id)
     emprestimo.delete()
-    return redirect('emprestimo:listar')
+    return redirect('listar_emprestimos')

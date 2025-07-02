@@ -9,7 +9,7 @@
                 <h1 class="h2 text-dark font-weight-bold m-0">Empréstimos de materiais</h1>
                 <p class="m-0">Controle de empréstimos e devoluções de equipamentos</p>
             </div>
-            <a class="btn btn-success my-2" href="{% url 'emprestimo:adicionar' %}">
+            <a class="btn btn-success my-2" href="{% url 'adicionar_emprestimo' %}">
                 <i class="fas fa-plus fa-xs"></i>
                 Adicionar
             </a>
@@ -36,13 +36,13 @@
                                 <td>{{ emprestimo.data_devolucao }}</td>
                                 <td>{{ emprestimo.status }}</td>
                                 <td class="text-center">
-                                    <a href="{% url 'emprestimo:detalhar' emprestimo.id %}" class="btn btn-warning m-1" aria-label="Ver">
+                                    <a href="{% url 'detalhar_emprestimo' emprestimo.id %}" class="btn btn-warning m-1" aria-label="Ver">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <a href="{% url 'emprestimo:editar' emprestimo.id %}" class="btn btn-info m-1" aria-label="Editar">
+                                    <a href="{% url 'editar_emprestimo' emprestimo.id %}" class="btn btn-info m-1" aria-label="Editar">
                                         <i class="fas fa-pen"></i>
                                     </a>
-                                    <button class="btn btn-danger m-1" aria-label="Excluir" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'emprestimo:excluir' emprestimo.id %}'>
+                                    <button class="btn btn-danger m-1" aria-label="Excluir" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'excluir_emprestimo' emprestimo.id %}'>
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </td>

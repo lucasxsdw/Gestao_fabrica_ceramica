@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Material
 from .forms import MaterialForm
@@ -15,7 +16,7 @@ def adicionar(request):
         form = MaterialForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('material:listar')
+            return redirect('listar_materiais')
     else:
         form = MaterialForm()
     return render(request, 'material/form.html', {'form': form})
@@ -26,7 +27,7 @@ def editar(request, id):
         form = MaterialForm(request.POST, instance=material)
         if form.is_valid():
             form.save()
-            return redirect('material:listar')
+            return redirect('listar_materiais')
     else:
         form = MaterialForm(instance=material)
     return render(request, 'material/form.html', {'form': form})
@@ -34,4 +35,10 @@ def editar(request, id):
 def excluir(request, id):
     material = get_object_or_404(Material, id=id)
     material.delete()
-    return redirect('material:listar')
+    return redirect('listar_materiais')
+
+def obter_dias_emprestimo(request, id):
+    material = get_object_or_404(Material, id=id)
+    quantidade_dias = material.dias_de_emprestimo
+    contexto = {'quantidade_dias': quantidade_dias}
+    return JsonResponse(contexto)

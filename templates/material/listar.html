@@ -9,7 +9,7 @@
                 <h1 class="h2 text-dark font-weight-bold m-0">Materiais</h1>
                 <p class="m-0">Controle de equipamentos de proteção individual</p>
             </div>
-            <a class="btn btn-success my-2" href="{% url 'material:adicionar' %}">
+            <a class="btn btn-success my-2" href="{% url 'adicionar_material' %}">
                 <i class="fas fa-plus fa-xs"></i>
                 Adicionar
             </a>
@@ -34,13 +34,13 @@
                                 <td>{{ material.dias_de_emprestimo }}</td>
                                 <td>{{ material.quantidade }}</td>
                                 <td class="text-center">
-                                    <a href="{% url 'material:detalhar' material.id %}" class="btn btn-warning m-1" aria-label="Ver">
+                                    <a href="{% url 'detalhar_material' material.id %}" class="btn btn-warning m-1" aria-label="Ver">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <a href="{% url 'material:editar' material.id %}" class="btn btn-info m-1" aria-label="Editar">
+                                    <a href="{% url 'editar_material' material.id %}" class="btn btn-info m-1" aria-label="Editar">
                                         <i class="fas fa-pen"></i>
                                     </a>
-                                    <button class="btn btn-danger m-1" aria-label="Excluir" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'material:excluir' material.id %}'>
+                                    <button class="btn btn-danger m-1" aria-label="Excluir" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'excluir_material' material.id %}'>
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </td>

@@ -1,6 +1,6 @@
 {% extends "_base.html" %}
 
-{% block title %}{% endblock %}
+{% block title %}Empréstimo de material{% endblock %}
 
 {% block content %}
     <div class="card">
@@ -9,18 +9,44 @@
                 <h1 class="h2 text-dark font-weight-bold m-0">Empréstimo de material</h1>
             </div>
             <div>
-                <a class="btn btn-info my-2" href="{% url 'emprestimo:editar' emprestimo.id %}">
+                <a class="btn btn-info my-2" href="{% url 'editar_emprestimo' emprestimo.id %}">
                     <i class="fas fa-pen fa-xs"></i>
                     Editar
                 </a>
-                <button class="btn btn-danger my-2" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'emprestimo:excluir' emprestimo.id %}'>
+                <button class="btn btn-danger my-2" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'excluir_emprestimo' emprestimo.id %}'>
                     <i class="fas fa-trash fa-xs"></i>
                     Excluir
                 </button>
             </div>
         </div>
         <div class="card-body">
-            
+            <h2 class="h3">Informações do empréstimo</h2>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div>
+                        <span class="d-block font-weight-bold">Funcionário: </span>
+                        <p>{{ emprestimo.funcionario.nome }}</p>
+                    </div>
+                    <div>
+                        <span class="d-block font-weight-bold">Material: </span>
+                        <p>{{ emprestimo.material.nome }}</p>
+                    </div>
+                    <div>
+                        <span class="d-block font-weight-bold">Status: </span>
+                        <p>{{ emprestimo.status }}</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div>
+                        <span class="d-block font-weight-bold">Data de emprestimo: </span>
+                        <p>{{ emprestimo.data_emprestimo }}</p>
+                    </div>
+                    <div>
+                        <span class="d-block font-weight-bold">Data de devolução: </span>
+                        <p>{{ emprestimo.data_devolucao }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

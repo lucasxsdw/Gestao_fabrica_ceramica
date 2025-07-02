@@ -21,7 +21,7 @@ def add_Func(request):
     else:
         form = FuncionarioForm()
         
-    return render(request, 'funcionario/form.html', {'form': form})
+    return render(request, 'funcionario/form.html', {'form': form, 'modo': 'adicionar'})
 
 
 def editar_func(request, id):
@@ -33,7 +33,7 @@ def editar_func(request, id):
              return redirect('funcionario:listar_funcionarios')
     else:
         form = FuncionarioForm(instance=func)
-    return render(request, 'funcionario/form.html', {'form': form})
+    return render(request, 'funcionario/form.html', {'form': form, 'modo': 'editar'})
 
 
 

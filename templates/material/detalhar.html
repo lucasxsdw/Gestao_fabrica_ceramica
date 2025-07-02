@@ -1,6 +1,6 @@
 {% extends "_base.html" %}
 
-{% block title %}{% endblock %}
+{% block title %}Material{% endblock %}
 
 {% block content %}
     <div class="card">
@@ -9,37 +9,43 @@
                 <h1 class="h2 text-dark font-weight-bold m-0">Material</h1>
             </div>
             <div>
-                <a class="btn btn-info my-2" href="{% url 'material:editar' material.id %}">
+                <a class="btn btn-info my-2" href="{% url 'editar_material' material.id %}">
                     <i class="fas fa-pen fa-xs"></i>
                     Editar
                 </a>
-                <button class="btn btn-danger my-2" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'material:excluir' material.id %}'>
+                <button class="btn btn-danger my-2" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'excluir_material' material.id %}'>
                     <i class="fas fa-trash fa-xs"></i>
                     Excluir
                 </button>
             </div>
         </div>
         <div class="card-body">
-            <h2>Informações do material</h2>
-            <div>
-                <span class="d-block font-weight-bold">Nome: </span>
-                <p>{{ material.nome }}</p>
-            </div>
-            <div>
-                <span class="d-block font-weight-bold">Certificado de aprovação: </span>
-                <p>{{ material.certificado_aprovacao }}</p>
-            </div>
-            <div>
-                <span class="d-block font-weight-bold">Dias de emprestimo: </span>
-                <p>{{ material.dias_de_emprestimo }} dias</p>
-            </div>
-            <div>
-                <span class="d-block font-weight-bold">Quantidade: </span>
-                <p>{{ material.quantidade }}</p>
-            </div>
-            <div>
-                <span class="d-block font-weight-bold">Fabricante: </span>
-                <p>{{ material.fabricante }}</p>
+            <h2 class="h3">Informações do material</h2>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div>
+                        <span class="d-block font-weight-bold">Nome: </span>
+                        <p>{{ material.nome }}</p>
+                    </div>
+                    <div>
+                        <span class="d-block font-weight-bold">Certificado de aprovação: </span>
+                        <p>{{ material.certificado_aprovacao }}</p>
+                    </div>
+                    <div>
+                        <span class="d-block font-weight-bold">Dias de emprestimo: </span>
+                        <p>{{ material.dias_de_emprestimo }} dias</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div>
+                        <span class="d-block font-weight-bold">Quantidade: </span>
+                        <p>{{ material.quantidade }}</p>
+                    </div>
+                    <div>
+                        <span class="d-block font-weight-bold">Fabricante: </span>
+                        <p>{{ material.fabricante }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

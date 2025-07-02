@@ -9,7 +9,7 @@ class Funcionario(models.Model):
     ]
 
     STATUS_CHOICES = [
-        ('AtivoAT', 'Ativo'),
+        ('Ativo', 'Ativo'),
         ('Inativo', 'Inativo'),
         ('Férias', 'Férias'),
     ]
@@ -21,9 +21,9 @@ class Funcionario(models.Model):
     chave_pix = models.CharField(max_length=255, verbose_name="Chave pix")
     banco = models.CharField(max_length=255, verbose_name="Banco")
     contato = models.CharField(max_length=20, verbose_name="Contato")
-    cpf = models.CharField(max_length=11, verbose_name="CPF")
+    cpf = models.CharField(max_length=15, verbose_name="CPF")
     data_admissao = models.DateField(verbose_name="Data de admissão")
-    frequencia_pagamento = models.CharField(max_length=20,choices=FREQUENCIA_PAGAMENTO_CHOICES, verbose_name="Frequência de pagamento")
+    frequencia_pagamento = models.CharField(max_length=14,choices=FREQUENCIA_PAGAMENTO_CHOICES, verbose_name="Frequência de pagamento")
     status = models.CharField(max_length=10,choices=STATUS_CHOICES, verbose_name="Status")
 
 
