@@ -18,7 +18,7 @@
             <span>Dashboard</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{% url 'funcionario:listar_funcionarios' %}">
             <i class="fas fa-fw fa-clipboard-list"></i>
             <span>Funcionários</span></a>
     </li>
@@ -26,6 +26,11 @@
         <a class="nav-link" href="{% url 'pagamento:listar_pagamentos' %}">
             <i class="fas fa-fw fa-receipt"></i>
             <span>Pagamentos</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'listar_produtos' %}">
+            <i class="fas fa-fw fa-box"></i>
+            <span>Produtos</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{% url 'listar_materiais' %}">
@@ -36,10 +41,5 @@
         <a class="nav-link" href="{% url 'listar_emprestimos' %}">
             <i class="fas fa-fw fa-hand-holding"></i>
             <span>Empréstimos de materiais</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="">
-            <i class="fas fa-fw fa-box"></i>
-            <span>Produtos</span></a>
     </li>
 </ul>

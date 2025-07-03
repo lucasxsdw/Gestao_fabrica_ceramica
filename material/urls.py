@@ -1,8 +1,6 @@
 from django.urls import path
 from . import views
 
-
-
 urlpatterns = [
     path('', views.listar, name='listar_materiais'),
     path('<int:id>', views.detalhar, name='detalhar_material'),

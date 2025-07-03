@@ -1,0 +1,89 @@
+{% extends "_base.html" %}
+
+{% block title %}Produto{% endblock %}
+
+{% block content %}
+    <div class="card border-0">
+        <div class="card-header d-flex flex-column justify-content-between flex-sm-row align-items-center">
+            <div class="mr-3">
+                <h1 class="h2 text-dark font-weight-bold m-0">Produto</h1>
+            </div>
+            <div>
+                <a class="btn btn-info my-2" href="{% url 'editar_produto' produto.id %}">
+                    <i class="fas fa-pen fa-xs"></i>
+                    Editar
+                </a>
+                <button class="btn btn-danger my-2" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'excluir_produto' produto.id %}'>
+                    <i class="fas fa-trash fa-xs"></i>
+                    Excluir
+                </button>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 col-lg-6">
+                <div class="card-body border shadow">
+                    <div>
+                        <h2 class="h4 font-weight-bold">{{ produto.nome }}</h2>
+                        <div class="bagde badge-success d-inline-block p-2 rounded">
+                            <span>PREÇO UNITÁRIO</span>
+                            <br>
+                            <span class="font-weight-bold h3">{{ produto.preco_unitario }}</span>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h2 class="h3 font-weight-bold">Histórico de produção</h2>
+                        <table class="table" id="dataTableNoSearch">
+                            <thead>
+                                <tr>
+                                    <td>Data</td>
+                                    <td>Quantidade</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for producao in producoes %}
+                                    <tr>
+                                        <td>{{ producao.data }}</td>
+                                        <td>{{ producao.quantidade_produzida }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn btn-info">
+                                    <div class="fas fa-plus"></div>
+                                    Novo registro
+                                </button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            <div class="col-12 col-lg-6">
+                <div class="card-body border shadow">
+                    <h2 class="h3 font-weight-bold">Estatísticas</h2>
+                    <div class="row mt-3 p-0">
+                        <div class="col">
+                            <div class="card alert alert-primary border border-primary">
+                                <div class="font-weight-bold">PRODUÇÃO DE HOJE</div>
+                                <div class="h2 font-weight-bold mb-0">0</div>
+                                <div>unidades produzidas</div>
+                            </div>
+                            <div class="card alert alert-primary border border-primary">
+                                <div class="font-weight-bold">PRODUÇÃO DE HOJE</div>
+                                <div class="h2 font-weight-bold mb-0">0</div>
+                                <div>unidades produzidas</div>
+                            </div>
+                            <div class="card alert alert-primary border border-primary">
+                                <div class="font-weight-bold">PRODUÇÃO DE HOJE</div>
+                                <div class="h2 font-weight-bold mb-0">0</div>
+                                <div>unidades produzidas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

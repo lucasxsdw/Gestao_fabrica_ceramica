@@ -31,6 +31,7 @@ urlpatterns = [
     path('material/', include('material.urls')),
     path('emprestimo/', include('emprestimo.urls')),
     path('auth/', include('usuarios.urls')),
+    path('produto/', include('produto.urls'))
 ]
 
 
