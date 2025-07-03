@@ -20,8 +20,8 @@ let selecao = document.querySelector('#id_material');
 let campoDataEmprestimo = document.querySelector('#id_data_emprestimo');
 let campoDataDevolucao = document.querySelector('#id_data_devolucao');
 
-selecao.addEventListener('change', definirDataDevolucao);
-campoDataEmprestimo.addEventListener('change', definirDataDevolucao);
+selecao?.addEventListener('change', definirDataDevolucao);
+campoDataEmprestimo?.addEventListener('change', definirDataDevolucao);
 
 function definirDataDevolucao(){
   
@@ -59,3 +59,25 @@ function formatarData(data) {
   
   return `${ano}-${mes}-${dia}`;
 }
+
+// adiciona a classe active ao link corresponde à página atual na barra lateral
+/* (function(){
+    const path = window.location.pathname;    
+
+    if (path.charAt(0) !== '/') {
+        path = '/' + path;
+    }
+
+    const links = document.querySelectorAll('ul.sidebar li a');
+    
+    const origin = window.location.origin;
+
+    links.forEach(elemento => {
+      let href = elemento.href;
+      href = href.replace(origin, '')
+      
+      if(href == path){
+        elemento.parentElement.classList.add('active');
+      }
+    })
+})(); */
