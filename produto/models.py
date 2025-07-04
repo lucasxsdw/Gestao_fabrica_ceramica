@@ -18,7 +18,7 @@ class ProducaoDiaria(models.Model):
     def __str__(self):
         return f"{self.data} - {self.produto.nome} "
     
-    """ class Meta:
+    class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['data', 'quantidade_produzida'], name="unico_por_data")
-        ] """
+            models.UniqueConstraint(fields=['data', 'produto'], name="unico_por_data")
+        ]
