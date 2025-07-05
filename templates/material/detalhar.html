@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-header d-flex flex-column justify-content-between flex-sm-row align-items-center">
             <div class="mr-3">
-                <h1 class="h2 text-dark font-weight-bold m-0">Material</h1>
+                <h1 class="h2 text-dafont-weight-bold m-0">Material</h1>
             </div>
             <div>
                 <a class="btn btn-info my-2" href="{% url 'editar_material' material.id %}">
@@ -23,27 +23,27 @@
             <h2 class="h3">Informações do material</h2>
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="p-3 rounded shadow-sm border-start border-4 border-success">
-                        <span class="h5 d-block font-weight-bold">Nome: </span>
-                        <p>{{ material.nome }}</p>
+                    <div class="border-left-primary p-3 rounded shadow-sm border-start border-4 border-success text-dark d-flex justify-content-between mb-4 h5">
+                        <span class="font-weight-bold mr-2">Nome:</span> 
+                        <span>{{ material.nome }}</span>
                     </div>
-                    <div class="p-3 rounded shadow-sm border-start border-4 border-success">
-                        <span class="h5 d-block font-weight-bold">Certificado de aprovação: </span>
-                        <p>{{ material.certificado_aprovacao }}</p>
+                    <div class="border-left-primary p-3 rounded shadow-sm border-start border-4 border-success text-dark d-flex justify-content-between mb-4 h5">
+                        <span class="font-weight-bold mr-2">Certificado de aprovação:</span> 
+                        <span>{{ material.certificado_aprovacao }}</span>
                     </div>
-                    <div class="p-3 rounded shadow-sm border-start border-4 border-success">
-                        <span class="h5 d-block font-weight-bold">Dias de emprestimo: </span>
-                        <p>{{ material.dias_de_emprestimo }} dias</p>
+                    <div class="border-left-primary p-3 rounded shadow-sm border-start border-4 border-success text-dark d-flex justify-content-between mb-4 h5">
+                        <span class="font-weight-bold mr-2">Dias de emprestimo:</span> 
+                        <span>{{ material.dias_de_emprestimo }}</span>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="p-3 rounded shadow-sm border-start border-4 border-success">
-                        <span class="h5 d-block font-weight-bold">Quantidade: </span>
-                        <p>{{ material.quantidade }}</p>
+                    <div class="border-left-primary p-3 rounded shadow-sm border-start border-4 border-success text-dark d-flex justify-content-between mb-4 h5">
+                        <span class="font-weight-bold mr-2">Quantidade</span> 
+                        <span>{{ material.quantidade }}</span>
                     </div>
-                    <div class="p-3 rounded shadow-sm border-start border-4 border-success">
-                        <span class="h5 d-block font-weight-bold">Fabricante: </span>
-                        <p>{{ material.fabricante }}</p>
+                    <div class="border-left-primary p-3 rounded shadow-sm border-start border-4 border-success text-dark d-flex justify-content-between mb-4 h5">
+                        <span class="font-weight-bold mr-2">Fabricante</span> 
+                        <span>{{ material.fabricante }}</span>
                     </div>
                 </div>
             </div>
