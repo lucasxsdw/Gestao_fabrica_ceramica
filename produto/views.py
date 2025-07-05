@@ -9,7 +9,7 @@ def listar(request):
 
 def detalhar(request, id):
     produto = get_object_or_404(Produto, id=id)
-    producoes = ProducaoDiaria.objects.filter(produto=id)
+    producoes = ProducaoDiaria.objects.filter(produto=id).order_by('-data')
     contexto = {
         'produto': produto,
         'producoes': producoes
@@ -42,7 +42,7 @@ def excluir(request, id):
     produto.delete()
     return redirect('listar_produtos')
 
-""" 
+
 def adicionar_producao(request):
     if request.method == 'POST':
         form = ProducaoDiariaForm(request.POST)
@@ -62,4 +62,4 @@ def editar_producao(request, id):
             return redirect('listar_produtos')
     else:
         form = ProducaoDiariaForm(instance=producao_diaria)
-    return render(request, 'produto/form.html', {'form': form}) """
+    return render(request, 'produto/form.html', {'form': form})

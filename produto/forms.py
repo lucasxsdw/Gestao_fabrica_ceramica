@@ -10,3 +10,6 @@ class ProducaoDiariaForm(forms.ModelForm):
     class Meta:
         model = ProducaoDiaria
         fields = '__all__'
+        widgets = {
+            'data': forms.DateInput(format='%Y-%m-%d', attrs={'type':'date'})
+        }
