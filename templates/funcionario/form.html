@@ -1,6 +1,8 @@
 {% extends "_base.html" %}
 {% load crispy_forms_tags %}
 
+{% block title %}Funcionário{% endblock %}
+
 {% block content %}
   {% if modo == 'editar' %}
     <span class="badge bg-warning text-dark mb-2 font-weight-bold ">Modo de Edição</span>
