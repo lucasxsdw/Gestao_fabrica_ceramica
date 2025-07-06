@@ -9900,9 +9900,10 @@ a:focus {
 }
 
 .bg-gradient-primary {
-  background-color: white;
+  background-color: #e9641c;
   background-size: cover;
 }
+
 
 .bg-gradient-secondary {
   background-color: #858796;
@@ -10689,11 +10690,11 @@ a:focus {
 }
 
 .sidebar-dark .nav-item .nav-link {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255);
 }
 
 .sidebar-dark .nav-item .nav-link i {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .sidebar-dark .nav-item .nav-link:active, .sidebar-dark .nav-item .nav-link:focus, .sidebar-dark .nav-item .nav-link:hover {

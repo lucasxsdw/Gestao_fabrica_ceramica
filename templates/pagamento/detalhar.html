@@ -11,15 +11,22 @@
                 <a class="btn btn-info btn-sm me-2" href="{% url 'pagamento:editar_pagamento' pagamento.id %}">
                     <i class="fas fa-pen"></i> Editar
                 </a>
-                <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalConfirmacaoExclusao" href="{% url 'pagamento:excluir_pagamento' pagamento.id %}">
+                <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalConfirmacaoExclusao"
+                    href="{% url 'pagamento:excluir_pagamento' pagamento.id %}">
                     <i class="fas fa-trash"></i> Excluir
                 </a>
             </div>
         </div>
 
         <div class="card-body text-center">
+            {% if pagamento.funcionario.foto %}
+            <img src="{{ pagamento.funcionario.foto.url }}" alt="Foto do funcionário"
+                class="rounded-circle mx-auto mb-3" style="width:80px;height:80px;object-fit:cover;">
+            {% else %}
             <div class="rounded-circle mx-auto mb-3"
-                style="width:80px;height:80px;background:linear-gradient(135deg,#89f7fe,#66a6ff);"></div>
+                style="width:80px;height:80px;background:linear-gradient(135deg,#89f7fe,#66a6ff);">
+            </div>
+            {% endif %}
             <h4 class="mb-0">{{ pagamento.funcionario.nome }}</h4>
             <small class="text-muted">{{ pagamento.data_pagamento|date:"d \d\e F \d\e Y" }}</small>
 
