@@ -1,15 +1,19 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Emprestimo
 from .forms import EmprestimoForm
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def listar(request):
     emprestimos = Emprestimo.objects.all()
     return render(request, 'emprestimo/listar.html', {'emprestimos': emprestimos})
 
+@login_required
 def detalhar(request, id):
     emprestimo = get_object_or_404(Emprestimo, id=id)
     return render(request, 'emprestimo/detalhar.html', {'emprestimo': emprestimo})
 
+@login_required
 def adicionar(request):
     if request.method == 'POST':
         form = EmprestimoForm(request.POST)
@@ -22,6 +26,7 @@ def adicionar(request):
         form = EmprestimoForm()
     return render(request, 'emprestimo/form.html', {'form': form})
 
+@login_required
 def editar(request, id):
     emprestimo = get_object_or_404(Emprestimo, id=id)
     if request.method == 'POST':
@@ -35,6 +40,7 @@ def editar(request, id):
         form = EmprestimoForm(instance=emprestimo)
     return render(request, 'emprestimo/form.html', {'form': form})
 
+@login_required
 def excluir(request, id):
     emprestimo = get_object_or_404(Emprestimo, id=id)
     emprestimo.delete()
