@@ -9,6 +9,11 @@ class Produto(models.Model):
 
     def __str__(self):
         return self.nome
+    
+    class Meta:
+        permissions = [
+        ('detail_produto', 'Pode detalhar produtos'),
+    ]
 
 class ProducaoDiaria(models.Model):
     data = models.DateField(verbose_name="Data da produção")
@@ -20,5 +25,10 @@ class ProducaoDiaria(models.Model):
     
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['data', 'produto'], name="unico_por_data")
+            models.UniqueConstraint(fields=['data', 'produto'], name="unico_por_data") 
         ]
+        permissions = [
+        ('detail_producao_diaria', 'Pode detalhar produções diárias'),
+    ]
+
+    

@@ -19,3 +19,8 @@ class Emprestimo(models.Model):
     def definir_data_devolucao(self):
         if self.material and self.data_emprestimo:
             self.data_devolucao = self.data_emprestimo + datetime.timedelta(days=self.material.dias_de_emprestimo)
+    
+    class Meta:
+        permissions = [
+        ('detail_emprestimo', 'Pode detalhar emprestimos'),
+    ]

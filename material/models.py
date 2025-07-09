@@ -12,3 +12,7 @@ class Material(models.Model):
 
     def __str__(self):
         return self.nome
+    class Meta:
+        permissions = [
+        ('detail_material', 'Pode detalhar materiais'),
+    ]

@@ -16,3 +16,8 @@ class Pagamento(models.Model): # Toda classe que herda de models.Model, vira uma
 
     def __str__(self): # Método especial que o django usa para exibir o objeto como string(texto).
         return f"{self.funcionario.nome} - {self.data_pagamento}"
+    
+    class Meta:
+        permissions = [
+        ('detail_pagamento', 'Pode detalhar um pagamento'),
+    ]

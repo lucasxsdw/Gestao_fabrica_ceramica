@@ -37,3 +37,8 @@ class Funcionario(models.Model):
 
     def __str__(self):
         return self.nome
+    
+    class Meta:
+        permissions = [
+        ('detail_funcionario', 'Pode detalhar funcionarios'),
+    ]
