@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Emprestimo
 from .forms import EmprestimoForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 @login_required
 def listar(request):
@@ -21,6 +22,7 @@ def adicionar(request):
             emprestimo = form.save(commit=False)
             emprestimo.definir_data_devolucao()
             emprestimo.save()
+            messages.success(request, "Empréstimo adicionado com sucesso!")
             return redirect('listar_emprestimos')
     else:
         form = EmprestimoForm()
@@ -35,6 +37,7 @@ def editar(request, id):
             emprestimo = form.save(commit=False)
             emprestimo.definir_data_devolucao()
             emprestimo.save()
+            messages.success(request, "Empréstimo editado com sucesso!")
             return redirect('listar_emprestimos')
     else:
         form = EmprestimoForm(instance=emprestimo)
@@ -44,4 +47,5 @@ def editar(request, id):
 def excluir(request, id):
     emprestimo = get_object_or_404(Emprestimo, id=id)
     emprestimo.delete()
+    messages.success(request, "Empréstimo excluído com sucesso!")
     return redirect('listar_emprestimos')

@@ -18,6 +18,7 @@ def add_Func(request):
         form = FuncionarioForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, "Funcionário adicionado com sucesso!")
             return redirect('funcionario:listar_funcionarios')
     else:
         form = FuncionarioForm()
@@ -31,6 +32,7 @@ def editar_func(request, id):
         form = FuncionarioForm(request.POST, request.FILES, instance=func)
         if form.is_valid():
              form.save()
+             messages.success(request, "Funcionário editado com sucesso!")
              return redirect('funcionario:listar_funcionarios')
     else:
         form = FuncionarioForm(instance=func)

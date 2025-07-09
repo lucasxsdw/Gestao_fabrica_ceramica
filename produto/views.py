@@ -3,11 +3,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Produto, ProducaoDiaria
 from .forms import ProdutoForm, ProducaoDiariaForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
 
 @login_required
 def listar(request):
     produtos = Produto.objects.all()
     return render(request, 'produto/listar.html', {'produtos': produtos})
+
 
 @login_required
 def detalhar(request, id):
@@ -16,8 +19,9 @@ def detalhar(request, id):
     contexto = {
         'produto': produto,
         'producoes': producoes
-        }
+    }
     return render(request, 'produto/detalhar.html', contexto)
+
 
 @login_required
 def adicionar(request):
@@ -25,10 +29,12 @@ def adicionar(request):
         form = ProdutoForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Produto adicionado com sucesso!")
             return redirect('listar_produtos')
     else:
         form = ProdutoForm()
     return render(request, 'produto/form.html', {'form': form})
+
 
 @login_required
 def editar(request, id):
@@ -37,16 +43,20 @@ def editar(request, id):
         form = ProdutoForm(request.POST, instance=produto)
         if form.is_valid():
             form.save()
+            messages.success(request, "Produto editado com sucesso!")
             return redirect('listar_produtos')
     else:
         form = ProdutoForm(instance=produto)
     return render(request, 'produto/form.html', {'form': form})
 
+
 @login_required
 def excluir(request, id):
     produto = get_object_or_404(Produto, id=id)
     produto.delete()
+    messages.success(request, "Produto excluído com sucesso!")
     return redirect('listar_produtos')
+
 
 @login_required
 def adicionar_producao(request):
@@ -59,6 +69,7 @@ def adicionar_producao(request):
         form = ProducaoDiariaForm()
     return render(request, 'produto/form_producao.html', {'form': form})
 
+
 @login_required
 def editar_producao(request, id):
     producao_diaria = get_object_or_404(ProducaoDiaria, id=id)
@@ -70,3 +81,4 @@ def editar_producao(request, id):
     else:
         form = ProducaoDiariaForm(instance=producao_diaria)
     return render(request, 'produto/form.html', {'form': form})
+

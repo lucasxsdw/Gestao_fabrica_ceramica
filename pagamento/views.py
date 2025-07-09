@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Pagamento
 from .forms import PagamentoForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 @login_required
 # Listar todos os pagamentos
@@ -22,6 +23,7 @@ def adicionar(request):
         form = PagamentoForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Pagamento adicionado com sucesso!")
             return redirect('pagamento:listar_pagamentos')
     else:
         form = PagamentoForm()
@@ -35,6 +37,7 @@ def editar(request, id):
         form = PagamentoForm(request.POST, instance=pagamento)
         if form.is_valid():
             form.save()
+            messages.success(request, "Pagamento editado com sucesso!")
             return redirect('pagamento:listar_pagamentos')
     else:
         form = PagamentoForm(instance=pagamento)
@@ -45,6 +48,7 @@ def editar(request, id):
 def excluir(request, id):
     pagamento = get_object_or_404(Pagamento, id=id)
     pagamento.delete()
+    messages.success(request, "Pagamento excluído com sucesso!")
     return redirect('pagamento:listar_pagamentos')
 
 @login_required
