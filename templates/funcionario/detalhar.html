@@ -3,164 +3,119 @@
 {% block title %}Funcionário{% endblock %}
 
 {% block content %}
+<div class="card ">
+
+ 
+
+ <div class="row bg-white ">
 
 
-    
+<div class="col-12 px-0">
+     
+
+<div class="alert d-flex justify-content-between align-items-center rounded-0 rounded-top py-4 border-0 w-100">
+  <div>
+    <h2 class="font-weight-bold mb-0">{{ funcionario.nome }}</h2>
+    <p class="mb-0">{{ funcionario.funcao }}</p>
+  </div>
+
+  <div class="d-flex align-items-center ">
+    <a class="btn btn-info" href="{% url 'funcionario:editar_funcionario' funcionario.id %}">
+      <i class="fas fa-pen fa-xs"></i> Editar
+    </a>
+    <button class="btn btn-danger ml-2"
+            data-toggle="modal"
+            data-target="#modalConfirmacaoExclusao"
+            data-url='{% url 'funcionario:excluir_funcionario' funcionario.id %}'>
+      <i class="fas fa-trash fa-xs"></i> Excluir
+    </button>
+  </div>
+</div>
+
+
+
+  
+    <div class="col-12 mb-4 ">
+      <div class="card border-left-primary shadow py-2">
         <div class="card-body">
-
-              <!-- Foto do funcionário -->
-        <div class="alert alert-primary mt-3 d-flex align-items-center">
-            {% if funcionario.foto %}
-                <img src="{{ funcionario.foto.url }}" alt="Foto de {{ funcionario.nome }}" 
-                    class="rounded-circle border me-3" width="50" height="50" />
-            {% endif %}
-            <div>
-                <h2 class="font-weight-bold mb-0">{{ funcionario.nome }}</h2>
-                <p class="mb-0">{{ funcionario.funcao }}</p>
-            </div>
+          <div class="text-dark text-uppercase font-weight-bold mb-3 ">
+            Informações Pessoais
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-muted">Nome completo:</span>
+            <span class="text-dark font-weight-bold">{{ funcionario.nome }}</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-muted">CPF:</span>
+            <span class="text-dark font-weight-bold">{{ funcionario.cpf }}</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-muted">Contato:</span>
+            <span class="text-dark font-weight-bold">{{ funcionario.contato }}</span>
+          </div>
         </div>
-
-
-           
-          <div class="row">
-            <div class="col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-50 py-2 mb-4">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-
-                                           <div class="text-dark text-uppercase font-weight-bold mb-3 fs-3">
-                                               Informações Pessoais
-                                            </div>
-
-
-                                            <div class="d-flex justify-content-between text-dark font-weight-bold mb-3">
-                                                <span  class="font-weight-normal">Nome completo:</span>
-                                                <span class="font-weight-bold text-dark">{{ funcionario.nome }}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-between text-dark font-weight-bold mb-3">
-                                                <span  class="font-weight-normal" >CPF:</span>
-                                                <span class="font-weight-bold text-dark">{{ funcionario.cpf }}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-between text-dark font-weight-bold mb-3">
-                                                <span class="font-weight-normal">Contato:</span>
-                                                <span class="font-weight-bold text-dark ">{{ funcionario.contato }}</span>
-                                            </div>
-
-
-
-                                            
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                </div>
-
-                
-                <div class="card border-left-success shadow h-50 py-2 mb-4">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-
-                                           <div class="text-dark text-uppercase font-weight-bold mb-3 fs-3">
-                                               Informações Profissionais
-                                            </div>
-
-
-                                            <div class="d-flex justify-content-between text-dark font-weight-bold mb-3">
-                                                <span  class="font-weight-normal">Função:</span>
-                                                <span class="font-weight-bold text-dark">{{ funcionario.funcao }}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-between text-dark font-weight-bold mb-3">
-                                                <span  class="font-weight-normal" >Data de admissão:</span>
-                                                <span class="font-weight-bold text-dark">{{ funcionario.data_admissao }}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-between text-dark font-weight-bold mb-3">
-                                                <span class="font-weight-normal">Status:</span>
-                                                <span class="font-weight-bold text-dark ">{{ funcionario.status }}</span>
-                                            </div>
-
-
-
-                                            
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                    </div>
-                
-            </div>
-                
-            <div class="col-md-6 mb-4">
- <div class="card border-left-info shadow h-50 py-2 mb-4">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-
-                                           <div class="text-dark text-uppercase font-weight-bold mb-3 fs-3">
-                                               Informações Financeiras
-
-                                            </div>
-
-
-                                            <div class="d-flex justify-content-between text-dark font-weight-bold mb-3">
-                                                <span  class="font-weight-normal">Salário:</span>
-                                                <span class="font-weight-bold text-success">{{ funcionario.salario }}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-between text-dark font-weight-bold mb-3">
-                                                <span  class="font-weight-normal" >Frequência de Pagamento:</span>
-                                                <span class="font-weight-bold text-dark ">{{ funcionario.frequencia_pagamento }}</span>
-                                            </div>
-
-                                           
-                                            
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                        </div>
-
-
-                        <div class="card border-left-warning shadow h-50 py-2 mb-4">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-
-                                           <div class="text-dark text-uppercase font-weight-bold mb-3 fs-3">
-                                               Dados Bancários
-
-                                            </div>
-
-
-                                            <div class="d-flex justify-content-between text-dark font-weight-bold mb-3">
-                                                <span  class="font-weight-normal">Banco:</span>
-                                                <span class="font-weight-bold text-dark">{{ funcionario.banco }}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-between text-dark font-weight-bold mb-3">
-                                                <span  class="font-weight-normal" >Chave PIX:</span>
-                                                <span class="font-weight-bold text-dark ">{{ funcionario.chave_pix }}</span>
-                                            </div>
-
-                                           
-                                            
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                        </div>
-            </div>
-                   
-
-
-
-
-
-        </div>
+      </div>
     </div>
+
+
+    <div class="col-12  mb-4 ">
+      <div class="card  border-left-primary shadow py-2">
+        <div class="card-body">
+          <div class="text-dark text-uppercase font-weight-bold mb-3 fs-5">
+            Informações Profissionais
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-muted">Função:</span>
+            <span class="text-dark font-weight-bold">{{ funcionario.funcao }}</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-muted">Data de Admissão:</span>
+            <span class="text-dark font-weight-bold">{{ funcionario.data_admissao }}</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-muted">Status:</span>
+            <span class="text-dark font-weight-bold">{{ funcionario.status }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 mb-4 ">
+      <div class="card  border-left-primary  shadow py-2">
+        <div class="card-body">
+          <div class="text-dark text-uppercase font-weight-bold mb-3 ">
+            Informações Financeiras
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-muted">Salário:</span>
+            <span class="text-success font-weight-bold">R$ {{ funcionario.salario }}</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2 ">
+            <span class="text-muted ">Frequência de Pagamento:</span>
+            <span class="badge bg-primary text-white">Mensal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 mb-4 ">
+      <div class="card  border-left-primary shadow py-2">
+        <div class="card-body">
+          <div class="text-dark text-uppercase font-weight-bold mb-3 fs-5">
+            Dados Bancários
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-muted">Banco:</span>
+            <span class="text-dark font-weight-bold">{{ funcionario.banco }}</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-muted">Chave PIX:</span>
+            <span class="text-dark font-weight-bold">{{ funcionario.chave_pix }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 {% endblock %}

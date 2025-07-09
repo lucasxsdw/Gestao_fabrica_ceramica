@@ -4,37 +4,16 @@
 {% block title %}Funcionário{% endblock %}
 
 {% block content %}
-  {% if modo == 'editar' %}
-    <span class="badge bg-warning text-dark mb-2 font-weight-bold ">Modo de Edição</span>
-  {% else %}
-    <h2 class="h3 font-weight-bold text-dark">Cadastro de Funcionário</h2>
-  {% endif %}
+  
 
-    <!--trocar de cor quando estiver editando-->
-  <div class="card-body border {% if modo == 'editar' %} bg-warning-sutle{% endif %}">
-    <h3 class="h4 font-weight-bold text-dark alert {% if modo == 'editar' %}alert-warning{% else %}alert-primary{% endif %}">Informações Pessoais</h3>
     
-    <form action="" method="post" enctype="multipart/form-data">
+  <div class="card-body border ">
+    <h3 class="h4 font-weight-bold text-dark alert alert-primary">Informações Pessoais</h3>
+    
+    <form action="" method="post" >
       {% csrf_token %}
 
-      <!-- Foto centralizada acima -->
-      <div class="text-center mb-4">
-        {{ form.foto|as_crispy_field }}
-
-      <!-- Prévia da imagem ao adicionar -->
-      <div id="preview-container" style="display: none;" class="mt-2">
-        <img id="preview-image" src="#" alt="Foto selecionada" class="border" width="100" height="100">
-      </div>
-
-      <!-- Exibir imagem atual ao editar -->
-      {% if modo == 'editar' and form.instance.foto %}
-        <div class="mt-2">
-          <img src="{{ form.instance.foto.url }}" alt="Foto atual" class="border" width="100" height="100">
-        </div>
-      {% endif %}
-    </div>
-
-
+      
     
       <div class="row">
         <div class="col-md-6">
@@ -58,7 +37,7 @@
       </div>
 
 
-      <h3 class="h4 font-weight-bold text-dark alert {% if modo == 'editar' %}alert-warning{% else %}alert-primary{% endif %}">Informações de Pagamento</h3>
+      <h3 class="h4 font-weight-bold text-dark alert alert-primary ">Informações de Pagamento</h3>
       
     
       <div class="row">
@@ -86,7 +65,7 @@
       <a href="{% url 'funcionario:listar_funcionarios' %}" class="btn btn-secondary mr-1 mb-1">
         Cancelar
       </a>
-      <button type="submit" class="mb-1 btn {% if modo == 'editar' %}btn-warning{% else %}btn-success{% endif %}">
+      <button type="submit" class="mb-1 btn ">
           {% if modo == 'editar' %}
               Salvar
           {% else %}
