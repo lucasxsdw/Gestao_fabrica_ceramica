@@ -14,11 +14,19 @@ class Funcionario(models.Model):
         ('Férias', 'Férias'),
     ]
 
+    TIPOS_CHAVES_PIX_CHOICES = [
+    ('CPF', 'CPF'),
+    ('TELEFONE', 'Telefone'),
+    ('EMAIL', 'Email'),
+    ('CHAVE_ALEATORIA', 'Chave Aleatória'),
+]
+
+    tipo_chave_pix = models.CharField(max_length=20,choices=TIPOS_CHAVES_PIX_CHOICES,   default='CPF', verbose_name="Tipo de chave Pix")
+    chave_pix = models.CharField(max_length=255, verbose_name="Chave pix")
 
     nome = models.CharField(max_length=255, verbose_name="Nome")
     funcao = models.CharField(max_length=255, verbose_name="Função")
     salario = models.DecimalField(decimal_places=2, max_digits=7, verbose_name="Salário")
-    chave_pix = models.CharField(max_length=255, verbose_name="Chave pix")
     banco = models.CharField(max_length=255, verbose_name="Banco")
     contato = models.CharField(max_length=20, verbose_name="Contato")
     cpf = models.CharField(max_length=14, verbose_name="CPF")

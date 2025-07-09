@@ -1,5 +1,6 @@
 {% extends "_base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}Funcionário{% endblock %}
 
@@ -42,7 +43,12 @@
     
       <div class="row">
         
-            <div class="col-md-6 ">
+            <div class="col-md-6">
+                {{ form.tipo_chave_pix|as_crispy_field }}
+            </div>
+            
+
+            <div class="col-md-6">
                 {{ form.chave_pix|as_crispy_field }}
             </div>
             
@@ -76,7 +82,7 @@
 
   </div>
 
-  {% load static %}
+<script src="{% static 'js/tipo_pix.js' %}"></script>
 
   <script src="{% static 'js/preview_foto.js' %}"></script>
 
