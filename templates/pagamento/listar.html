@@ -9,10 +9,14 @@
             <h1 class="h2 text-dark font-weight-bold m-0">Pagamentos</h1>
             <p class="m-0">Controle de pagamento dos funcionários</p>
         </div>
+
+        {% if perms.pagamento.add_pagamento %}
         <a class="btn btn-success my-2" href="{% url 'pagamento:adicionar_pagamento' %}">
             <i class="fas fa-plus fa-xs"></i>
             Novo
         </a>
+        {% endif %}
+
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -40,21 +44,28 @@
                         <td td class="font-weight-bold text-success">R$ {{ pagamento.total_calculado }}</td>
 
                         <td class="d-flex justify-content-center align-items-center gap-1">
+
+                            {% if perms.pagamento.detail_pagamento %}
                             <a href="{% url 'pagamento:detalhar_pagamento' pagamento.id %}"
                                 class="btn btn-warning btn-sm mx-1" aria-label="Ver">
                                 <i class="fas fa-eye"></i>
                             </a>
+                            {% endif %}
 
+                            {% if perms.pagamento.change_pagamento %}
                             <a href="{% url 'pagamento:editar_pagamento' pagamento.id %}"
                                 class="btn btn-info btn-sm mx-1" aria-label="Editar">
                                 <i class="fas fa-pen"></i>
                             </a>
+                            {% endif %}
 
+                            {% if perms.pagamento.delete_pagamento %}
                             <button class="btn btn-danger btn-sm mx-1" aria-label="Excluir" data-toggle="modal"
                                 data-target="#modalConfirmacaoExclusao"
                                 data-url="{% url  'pagamento:excluir_pagamento' pagamento.id %}">
                                 <i class="fas fa-trash"></i>
                             </button>
+                            {% endif %}
                         </td>
                     </tr>
                     {% empty %}
