@@ -66,7 +66,6 @@ def adicionar_producao(request, prod_id):
     produto = Produto.objects.get(id=prod_id)
 
     if request.method == 'POST':
-        print(request.POST)
         form = ProducaoDiariaForm(request.POST)
         if form.is_valid():
             form.save()
@@ -87,7 +86,7 @@ def editar_producao(request, prod_id, producao_id):
             form.save()
             return redirect(reverse('detalhar_produto', kwargs={'id': prod_id}))
     else:
-        form = ProducaoDiariaForm(produto_obj=produto, instance=producao_diaria)
+        form = ProducaoDiariaForm(instance=producao_diaria)
     return render(request, 'produto/form_producao.html', {'form': form, 'produto': produto})
 
 @permission_required('produto.delete_producao', raise_exception=True)

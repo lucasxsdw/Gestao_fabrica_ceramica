@@ -27,9 +27,9 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <span class="d-inline-block mb-2">Nome:</span>
-                            <input type="text" class="form-control" value="{{ produto.nome }}" readonly></span>
-                            {{ form.produto | as_crispy_field }}
+                            <label for="nomeProduto">Nome:</label>
+                            <input type="text" class="form-control" value="{{ produto.nome }}" id="nomeProduto" readonly></span>
+                            {{ form.produto }}
                         </div>
                     </div>
                     <div class="col-lg-4">

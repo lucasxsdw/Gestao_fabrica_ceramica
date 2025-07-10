@@ -22,3 +22,8 @@ class ProducaoDiariaForm(forms.ModelForm):
             self.fields['produto'].queryset = Produto.objects.none()
             self.fields['produto'].initial = produto_obj.id
             self.fields['produto'].widget = forms.HiddenInput()
+
+        if self.instance and self.instance.pk:
+            self.fields['produto'].queryset = Produto.objects.filter(id=self.instance.produto.id)
+            self.fields['produto'].initial = self.instance.produto.id
+            self.fields['produto'].widget = forms.HiddenInput()
