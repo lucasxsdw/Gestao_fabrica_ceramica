@@ -25,7 +25,7 @@ class ProducaoDiaria(models.Model):
     
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['data', 'produto'], name="unico_por_data") 
+            models.UniqueConstraint(fields=['data', 'produto'], name="unico_por_data", violation_error_message="Já existe uma produção registrada para este produto nesta data.")
         ]
         permissions = [
         ('detail_producao_diaria', 'Pode detalhar produções diárias'),

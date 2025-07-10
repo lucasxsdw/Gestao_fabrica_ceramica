@@ -13,3 +13,12 @@ class ProducaoDiariaForm(forms.ModelForm):
         widgets = {
             'data': forms.DateInput(format='%Y-%m-%d', attrs={'type':'date'})
         }
+
+    def __init__(self, *args, **kwargs):
+        produto_obj = kwargs.pop("produto_obj", None)
+        super().__init__(*args, **kwargs)
+
+        if produto_obj:
+            self.fields['produto'].queryset = Produto.objects.none()
+            self.fields['produto'].initial = produto_obj.id
+            self.fields['produto'].widget = forms.HiddenInput()
