@@ -1,0 +1,78 @@
+{% extends "_base.html" %}
+
+{% block title %}Produção{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header d-flex flex-column justify-content-between flex-sm-row align-items-center">
+            <div class="mr-3">
+                <h1 class="h2 text-dark font-weight-bold m-0">Produção</h1>
+                <p class="m-0">Controle de produção</p>
+            </div>
+            <a class="btn btn-success my-2" href="{% url 'adicionar_producao' %}">
+                <i class="fas fa-plus fa-xs"></i>
+                Novo
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="card px-3">
+                <div class="row align-items-end mb-3 mt-2">
+                    <div class="col">
+                        <label for="produtos" class="form-label">Produtos</label>
+                        <select name="produtos" id="produtos" class="custom-select">
+                            <option value="">Todos os produtos</option>
+                            {% for producao in producoes %}
+                                <option value="{{ producao.produto.id }}">{{ producao.produto.nome }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="data-inicial" class="form-label">Data inicial</label>
+                        <input type="date" id="data-inicial" class="form-control" name="data_inicial">
+                    </div>
+                    <div class="col mt-2">
+                        <label for="data-final" class="form-label">Data final</label>
+                        <input type="date" id="data-final" class="form-control" name="data_final">
+                    </div>
+                    <div class="col mt-2">
+                        <button type="button" class="btn btn-info text-nowrap">
+                            <i class="fa fa-search fa-sm"></i>&nbsp;
+                            Filtrar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="dataTableNoSearch">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Data</th>
+                            <th class="w-25">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producao in producoes %}
+                            <tr>
+                                <td>{{ producao.produto.nome }}</td>
+                                <td>{{ producao.quantidade_produzida }}</td>
+                                <td>{{ producao.data|date:'d/m/Y' }}</td>
+                                <td class="d-flex justify-content-center align-items-center gap-1">
+                                    <a href="{% url 'detalhar_producao' producao.id %}" class="btn btn-warning btn-sm mx-1" aria-label="Ver">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{% url 'editar_producao' producao.id %}" class="btn btn-info btn-sm mx-1" aria-label="Editar">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+                                    <button class="btn btn-danger btn-sm mx-1" aria-label="Excluir" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'excluir_producao' producao.id %}'>
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

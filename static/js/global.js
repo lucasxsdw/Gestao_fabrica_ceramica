@@ -1,6 +1,7 @@
 // traduz os elementos da tabela para português
 $(document).ready(function () {
   $('#dataTable').DataTable({
+    paging: false,
     language: {
         url: '//cdn.datatables.net/plug-ins/2.3.2/i18n/pt-BR.json',
     }
@@ -11,7 +12,7 @@ $(document).ready(function () {
 $(document).ready(function () {
   $('#dataTableNoSearch').DataTable({
     searching: false, 
-    paging: true,
+    paging: false,
     language: {
         url: '//cdn.datatables.net/plug-ins/2.3.2/i18n/pt-BR.json',
     }

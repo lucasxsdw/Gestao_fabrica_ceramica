@@ -1,0 +1,39 @@
+{% extends "_base.html" %}
+
+{% block title %}Produção{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header d-flex flex-column justify-content-between flex-sm-row align-items-center">
+            <div class="mr-3">
+                <h1 class="h2 text-dafont-weight-bold m-0">Produção</h1>
+            </div>
+            <div>
+                <a class="btn btn-info my-2" href="{% url 'editar_producao' producao.id %}">
+                    <i class="fas fa-pen fa-xs"></i>
+                    Editar
+                </a>
+                <button class="btn btn-danger my-2" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'excluir_producao' producao.id %}'>
+                    <i class="fas fa-trash fa-xs"></i>
+                    Excluir
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col border-left-warning p-3 rounded shadow-sm border-start border-4 border-success text-dark d-flex justify-content-between mb-4 h5 mr-2">
+                    <span class="font-weight-bold mr-2">Produto:</span> 
+                    <span>{{ producao.nome }}</span>
+                </div>
+                <div class="col border-left-warning p-3 rounded shadow-sm border-start border-4 border-success text-dark d-flex justify-content-between mb-4 h5">
+                    <span class="font-weight-bold mr-2">Quantidade:</span> 
+                    <span>{{ producao.quantidade_produzida }}</span>
+                </div>
+                <div class="col border-left-warning p-3 rounded shadow-sm border-start border-4 border-success text-dark d-flex justify-content-between mb-4 h5">
+                    <span class="font-weight-bold mr-2">Data: </span> 
+                    <span>{{ producao.data }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

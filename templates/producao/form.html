@@ -1,7 +1,7 @@
 {% extends "_base.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Produção diária{% endblock %}
+{% block title %}Produção{% endblock %}
 
 {% block content %}
     {% if form.errors %}
@@ -19,18 +19,14 @@
     {% endif %}
     <div class="card">
         <div class="card-header">
-            <h1 class="h2 text-dark font-weight-bold m-0">Produção diária</h1>
+            <h1 class="h2 text-dark font-weight-bold m-0">Produção</h1>
         </div>
         <div class="card-body">
             <form action="" method="post">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-lg-4">
-                        <div class="form-group">
-                            <label for="nomeProduto">Nome:</label>
-                            <input type="text" class="form-control" value="{{ produto.nome }}" id="nomeProduto" readonly></span>
-                            {{ form.produto }}
-                        </div>
+                        {{ form.produto | as_crispy_field }}
                     </div>
                     <div class="col-lg-4">
                         {{ form.quantidade_produzida | as_crispy_field }}
@@ -40,7 +36,7 @@
                     </div>
                 </div>
                 <input type="submit" value="Salvar" class="btn btn-success float-right mb-1">
-                <a class="btn btn-secondary float-right mr-1" href="{% url 'listar_produtos' %}">Cancelar</a>
+                <a class="btn btn-secondary float-right mr-1" href="{% url 'listar_producoes' %}">Cancelar</a>
             </form>
         </div>
     </div>

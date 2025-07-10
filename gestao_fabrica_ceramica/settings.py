@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'emprestimo',
     'usuarios',
     'produto',
+    'producao',
 ]
 
 MIDDLEWARE = [
