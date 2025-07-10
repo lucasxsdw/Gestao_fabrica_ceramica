@@ -9,10 +9,14 @@
                 <h1 class="h2 text-dark font-weight-bold m-0">Gestão de Funcionários</h1>
                 
             </div>
+            
+            {% if perms.funcionario.adicionar_funcionario %}
             <a class="btn btn-success my-2" href="{% url 'funcionario:adicionar_funcionario' %}">
                 <i class="fas fa-plus fa-xs"></i>
                 Novo
             </a>
+            {% endif %}
+
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -34,20 +38,26 @@
                                 
 
                               <td class="d-flex justify-content-center align-items-center gap-1">
+                                 {% if perms.funcionario.detalhes_funcionario %}
                                     <a href="{% url 'funcionario:detalhes_funcionario' funcionario.id %}" class="btn btn-warning btn-sm mx-1" aria-label="Ver">
                                         <i class="fas fa-eye"></i>
                                     </a>
+                                 {% endif %}
 
+                                 {% if perms.funcionario.editar_funcionario %}
                                     <a href="{% url 'funcionario:editar_funcionario' funcionario.id %}" class="btn btn-info btn-sm mx-1" aria-label="Editar">
                                         <i class="fas fa-pen"></i>
                                     </a>
+                                {% endif %}
 
+                                 {% if perms.funcionario.excluir_funcionario %}
                                     <a href="{%  url 'funcionario:excluir_funcionario' funcionario.id %}"  class="btn btn-danger btn-sm mx-1" aria-label="Excluir"
                                             data-toggle="modal"
                                             data-target="#modalConfirmacaoExclusao"
                                             data-url="{% url 'funcionario:excluir_funcionario' funcionario.id %}">
                                         <i class="fas fa-trash"></i>
                                     </a>
+                                {% endif %}
                               </td>
 
                             </tr>
