@@ -15,7 +15,7 @@
         <div class="card border-left-warning shadow h-100 p-0">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
+                    <div class="col mr-2 text-center">
                         <div class="h4 mt-0 font-weight-bold text-gray-800">{{ cont_funcionarios }}</div>
                         <div class="text-sm font-weight-bold text-warning text-uppercase mt-1">
                             Funcionários ativos
@@ -30,7 +30,7 @@
         <div class="card border-left-info shadow h-100 p-0">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
+                    <div class="col mr-2 text-center">
                         <div class="h4 mt-0 font-weight-bold text-gray-800">{{ producao_media }}</div>
                         <div class="text-sm font-weight-bold text-info text-uppercase mt-1">
                             Produção média diária
@@ -45,10 +45,10 @@
         <div class="card border-left-primary shadow h-100 p-0">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="h4 mt-0 font-weight-bold text-gray-800">18</div>
+                    <div class="col mr-2 text-center">
+                        <div class="h4 mt-0 font-weight-bold text-gray-800">{{ cont_materiais }}</div>
                         <div class="text-sm font-weight-bold text-primary text-uppercase mt-1">
-                            Pending Requests
+                            Materiais registrados
                         </div>
                     </div>
                 </div>
@@ -60,10 +60,10 @@
         <div class="card border-left-success shadow h-100 p-0">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="h4 mt-0 font-weight-bold text-gray-800">18</div>
+                    <div class="col mr-2 text-center">
+                        <div class="h4 mt-0 font-weight-bold text-gray-800">{{ cont_emprestimos }}</div>
                         <div class="text-sm font-weight-bold text-success text-uppercase mt-1">
-                            Pending Requests
+                            Devoluções pendentes
                         </div>
                     </div>
                 </div>
@@ -71,6 +71,71 @@
         </div>
     </div>
 </div>
+
+
+
+    {% comment %}
+    <!-- Alternativa dos cards com cores de fundo-->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card shadow h-100 p-0 bg-warning">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2 text-center text-white">
+                        <div class="h4 mt-0 font-weight-bold">{{ cont_funcionarios }}</div>
+                        <div class="text-sm font-weight-bold text-uppercase mt-1">
+                            Funcionários ativos
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card shadow h-100 p-0 bg-info">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2 text-center text-white">
+                        <div class="h4 mt-0 font-weight-bold">{{ producao_media }}</div>
+                        <div class="text-sm font-weight-bold text-uppercase mt-1">
+                            Produção média diária
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card shadow h-100 p-0 bg-primary">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2 text-center text-white">
+                        <div class="h4 mt-0 font-weight-bold">18</div>
+                        <div class="text-sm font-weight-bold text-uppercase mt-1">
+                            Pending Requests
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card shadow h-100 p-0 bg-success">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2 text-center text-white">
+                        <div class="h4 mt-0 font-weight-bold">18</div>
+                        <div class="text-sm font-weight-bold text-uppercase mt-1">
+                            Pending Requests
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endcomment %}
 
 <!-- Content Row -->
 
@@ -81,7 +146,7 @@
             <!-- Card Header - Dropdown -->
             <div
                 class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h2 class="m-0 font-weight-bold h4">Produção dos últimos 30 dias</h2>
+                <h2 class="m-0 font-weight-bold h4">Produção dos últimos {{ quantidade }} dias</h2>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -109,6 +174,11 @@
         </div>
     </div>
 </div>
+
+{{ producoes |json_script:"producoes_diarias" }}
+
+{{ producoes_por_produto|json_script:"producoes_por_produto" }}
+
 {% endblock %}
 
 {% block script %}
