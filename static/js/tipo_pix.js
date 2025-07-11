@@ -5,9 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const contatoInput = document.getElementById('id_contato');
   const salarioInput = document.getElementById('id_salario');
 
- 
-
-  // Máscara para CPF
+  // Aplicar máscara de CPF com IMask
   if (cpfInput) {
     IMask(cpfInput, {
       mask: '000.000.000-00'
@@ -15,31 +13,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     cpfInput.addEventListener('blur', function () {
       const cpf = cpfInput.value.replace(/[^\d]+/g, '');
-      if (cpf.length !== 11) {
-        cpfInput.classList.add('is-invalid');
-      } else {
-        cpfInput.classList.remove('is-invalid');
-      }
+      cpfInput.classList.toggle('is-invalid', cpf.length !== 11);
     });
   }
 
-  // Máscara para Telefone
+  // Aplicar máscara de Telefone com IMask
   if (contatoInput) {
     IMask(contatoInput, {
       mask: '(00) 00000-0000'
     });
 
     contatoInput.addEventListener('blur', function () {
-      const telefone = contatoInput.value.replace(/[^\d]+/g, '');
-      if (telefone.length !== 11) {
-        contatoInput.classList.add('is-invalid');
-      } else {
-        contatoInput.classList.remove('is-invalid');
-      }
+      const tel = contatoInput.value.replace(/[^\d]+/g, '');
+      contatoInput.classList.toggle('is-invalid', tel.length !== 11);
     });
   }
 
-  // Atualiza chave PIX conforme tipo
+  // Atualizar chave pix automaticamente
   function atualizarChavePix() {
     const tipo = tipoSelect.value;
     if (tipo === 'CPF') {
@@ -55,8 +45,8 @@ document.addEventListener('DOMContentLoaded', function () {
     tipoSelect.addEventListener('change', atualizarChavePix);
     cpfInput.addEventListener('input', atualizarChavePix);
     contatoInput.addEventListener('input', atualizarChavePix);
-    atualizarChavePix(); // Executa ao carregar
+    atualizarChavePix();
   } else {
-    console.warn("Um ou mais campos PIX não foram encontrados.");
+    console.warn("Alguns campos para PIX não foram encontrados.");
   }
 });
