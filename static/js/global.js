@@ -74,9 +74,9 @@ function formatarData(data) {
   return `${ano}-${mes}-${dia}`;
 }
 
-// adiciona a classe active ao link corresponde à página atual na barra lateral
-/* (function(){
-    const path = window.location.pathname;    
+//adiciona a classe active ao link corresponde à página atual na barra lateral
+(function(){
+    const path = window.location.pathname;
 
     if (path.charAt(0) !== '/') {
         path = '/' + path;
@@ -94,4 +94,4 @@ function formatarData(data) {
         elemento.parentElement.classList.add('active');
       }
     })
-})(); */
+})(); 

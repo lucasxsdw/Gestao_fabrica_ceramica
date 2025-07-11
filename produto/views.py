@@ -6,14 +6,14 @@ from .forms import ProdutoForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 
-@permission_required('produto.view_produto', raise_exception=True)
 @login_required
+@permission_required('produto.view_produto', raise_exception=True)
 def listar(request):
     produtos = Produto.objects.all()
     return render(request, 'produto/listar.html', {'produtos': produtos})
 
-@permission_required('produto.detail_produto', raise_exception=True)
 @login_required
+@permission_required('produto.detail_produto', raise_exception=True)
 def detalhar(request, id):
     produto = get_object_or_404(Produto, id=id)
     producoes = Producao.objects.filter(produto=id).order_by('-data')
@@ -23,8 +23,8 @@ def detalhar(request, id):
     }
     return render(request, 'produto/detalhar.html', contexto)
 
-@permission_required('produto.add_produto', raise_exception=True)
 @login_required
+@permission_required('produto.add_produto', raise_exception=True)
 def adicionar(request):
     if request.method == 'POST':
         form = ProdutoForm(request.POST)
@@ -36,8 +36,8 @@ def adicionar(request):
         form = ProdutoForm()
     return render(request, 'produto/form.html', {'form': form})
 
-@permission_required('produto.change_produto', raise_exception=True)
 @login_required
+@permission_required('produto.change_produto', raise_exception=True)
 def editar(request, id):
     produto = get_object_or_404(Produto, id=id)
     if request.method == 'POST':
@@ -50,8 +50,8 @@ def editar(request, id):
         form = ProdutoForm(instance=produto)
     return render(request, 'produto/form.html', {'form': form})
 
-@permission_required('produto.delete_produto', raise_exception=True)
 @login_required
+@permission_required('produto.delete_produto', raise_exception=True)
 def excluir(request, id):
     produto = get_object_or_404(Produto, id=id)
     produto.delete()

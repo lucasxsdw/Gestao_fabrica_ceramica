@@ -1,23 +1,29 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from produto.models import Produto
 from .models import Producao
 from .forms import ProducaoForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 
+@login_required
 @permission_required('producao.view_producao', raise_exception=True)
-@login_required
 def listar(request):
-    producoes = Producao.objects.all()
-    return render(request, 'producao/listar.html', {'producoes': producoes})
+    producoes = Producao.objects.all().order_by('-data')
+    produtos = Produto.objects.all()
+    contexto = {
+        'producoes': producoes,
+        'produtos': produtos,
+    }
+    return render(request, 'producao/listar.html', contexto)
 
-@permission_required('producao.detail_producao', raise_exception=True)
 @login_required
+@permission_required('producao.detail_producao', raise_exception=True)
 def detalhar(request, id):
     producao = get_object_or_404(Producao, id=id)
     return render(request, 'producao/detalhar.html', {'producao': producao})
 
-@permission_required('producao.add_producao', raise_exception=True)
 @login_required
+@permission_required('producao.add_producao', raise_exception=True)
 def adicionar(request):
     if request.method == 'POST':
         form = ProducaoForm(request.POST)
@@ -29,8 +35,8 @@ def adicionar(request):
         form = ProducaoForm()
     return render(request, 'producao/form.html', {'form': form})
 
-@permission_required('producao.change_producao', raise_exception=True)
 @login_required
+@permission_required('producao.change_producao', raise_exception=True)
 def editar(request, id):
     producao = get_object_or_404(Producao, id=id)
 
@@ -44,8 +50,8 @@ def editar(request, id):
         form = ProducaoForm(instance=producao)
     return render(request, 'producao/form.html', {'form': form})
 
-@permission_required('producao.delete_producao', raise_exception=True)
 @login_required
+@permission_required('producao.delete_producao', raise_exception=True)
 def excluir(request, id):
     producao = get_object_or_404(Producao, id=id)
     producao.delete()
