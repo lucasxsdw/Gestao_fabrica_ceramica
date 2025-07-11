@@ -22,7 +22,7 @@
   <div class="d-flex align-items-center ">
     {% if perms.funcionario.editar_funcionario %}
     <a class="btn btn-info" href="{% url 'funcionario:editar_funcionario' funcionario.id %}">
-      <i class="fas fa-pen fa-xs"></i> Editar
+      <i class="fas fa-edit fa-xs"></i> Editar
     </a>
     {%  endif %}
 

@@ -23,8 +23,6 @@ def listar(request):
         if data_final:
             producoes = producoes.filter(data__lte=data_final)
 
-        #print(producoes.query)
-
         producoes = producoes.values('id', 'produto__nome', 'quantidade_produzida', 'data')
 
         for p in producoes:

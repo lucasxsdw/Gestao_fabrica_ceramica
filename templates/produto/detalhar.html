@@ -8,7 +8,7 @@
                 <h1 class="h2 text-dark font-weight-bold m-0">Produto</h1>
             <div>
                 <a class="btn btn-info my-2" href="{% url 'editar_produto' produto.id %}">
-                    <i class="fas fa-pen fa-xs"></i>
+                    <i class="fas fa-edit fa-xs"></i>
                     Editar
                 </a>
                 <button class="btn btn-danger my-2" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'excluir_produto' produto.id %}'>
@@ -65,7 +65,7 @@
                                 <td>
                                     <a href="{% url 'editar_producao' producao.id %}"
                                      class="btn btn-info btn-sm mx-1" aria-label="Editar">
-                                        <i class="fas fa-pen"></i>
+                                        <i class="fas fa-edit"></i>
                                     </a>
                                     <button class="btn btn-danger btn-sm mx-1" aria-label="Excluir" data-toggle="modal"
                                         data-target="#modalConfirmacaoExclusao"

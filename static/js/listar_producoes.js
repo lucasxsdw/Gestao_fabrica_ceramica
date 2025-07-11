@@ -41,8 +41,6 @@ botaoFiltrar.addEventListener('click', () => {
 
             const linhas = [];
             dados.forEach(elemento => {
-                console.log(elemento);
-                
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>${elemento.produto__nome}</td>
