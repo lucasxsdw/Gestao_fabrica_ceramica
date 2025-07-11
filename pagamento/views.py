@@ -5,25 +5,22 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 
 
-@permission_required('pagamento.view_pagamento', raise_exception=True)
 @login_required
-# Listar todos os pagamentos
+@permission_required('pagamento.view_pagamento', raise_exception=True)
 def listar(request):
     pagamentos = Pagamento.objects.all()
     return render(request, 'pagamento/listar.html', {'pagamentos': pagamentos})
 
 
-@permission_required('pagamento.detail_pagamento', raise_exception=True)
 @login_required
-# Detalhar um pagamento específico
+@permission_required('pagamento.detail_pagamento', raise_exception=True)
 def detalhar(request, id):
     pagamento = get_object_or_404(Pagamento, id=id)
     return render(request, 'pagamento/detalhar.html', {'pagamento': pagamento})
 
 
-@permission_required('pagamento.add_pagamento', raise_exception=True)
 @login_required
-# Adicionar um novo pagamento
+@permission_required('pagamento.add_pagamento', raise_exception=True)
 def adicionar(request):
     if request.method == 'POST':
         form = PagamentoForm(request.POST)
@@ -36,9 +33,8 @@ def adicionar(request):
     return render(request, 'pagamento/form.html', {'form': form})
 
 
-@permission_required('pagamento.change_pagamento', raise_exception=True)
 @login_required
-# Editar um pagamento
+@permission_required('pagamento.change_pagamento', raise_exception=True)
 def editar(request, id):
     pagamento = get_object_or_404(Pagamento, id=id)
     if request.method == 'POST':
@@ -52,8 +48,8 @@ def editar(request, id):
     return render(request, 'pagamento/form.html', {'form': form})
 
 
-@permission_required('pagamento.delete_pagamento', raise_exception=True)
 @login_required
+@permission_required('pagamento.delete_pagamento', raise_exception=True)
 # Excluir um pagamento
 def excluir(request, id):
     pagamento = get_object_or_404(Pagamento, id=id)
