@@ -4,11 +4,34 @@ from .models import Producao
 from .forms import ProducaoForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
+from django.http import JsonResponse
 
 @login_required
 @permission_required('producao.view_producao', raise_exception=True)
 def listar(request):
     producoes = Producao.objects.all().order_by('-data')
+
+    if request.GET:
+        produto_id = request.GET.get('produto', None)
+        data_inicial = request.GET.get('data_inicial', None)
+        data_final = request.GET.get('data_final', None)
+
+        if produto_id and produto_id != 'Todos':
+            producoes = producoes.filter(produto__id=produto_id)
+        if data_inicial:
+            producoes = producoes.filter(data__gte=data_inicial)
+        if data_final:
+            producoes = producoes.filter(data__lte=data_final)
+
+        #print(producoes.query)
+
+        producoes = producoes.values('id', 'produto__nome', 'quantidade_produzida', 'data')
+
+        for p in producoes:
+            p['data'] = p['data'].strftime("%d/%m/%Y")
+
+        return JsonResponse(list(producoes), safe=False)
+
     produtos = Produto.objects.all()
     contexto = {
         'producoes': producoes,
