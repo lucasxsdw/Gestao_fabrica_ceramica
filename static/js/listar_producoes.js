@@ -4,8 +4,6 @@ const dataFinal = document.querySelector("#data-final");
 const botaoFiltrar = document.querySelector("#filtrar");
 
 const tabela = $('#dataTableNoSearch').DataTable({
-    searching: false, 
-    paging: false,
     language: {
         url: '//cdn.datatables.net/plug-ins/2.3.2/i18n/pt-BR.json',
     }
