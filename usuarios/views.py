@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth import authenticate, login as login_django, logout
 from django.contrib.auth.decorators import login_required
-
+from django.shortcuts import get_object_or_404
 
 def cadastro(request):
     if request.method == 'GET':
@@ -16,7 +17,6 @@ def cadastro(request):
     password1 = request.POST.get('password1')
     password2 = request.POST.get('password2')
 
-    # Verifica se as senhas conferem
     if password1 != password2:
         return render(
             request,
@@ -24,7 +24,6 @@ def cadastro(request):
             {'erro': 'As senhas não conferem.'}
         )
 
-# Verifica se o usuário já existe
     if User.objects.filter(username=username).exists():
         return render(
             request,
@@ -32,7 +31,6 @@ def cadastro(request):
             {'erro': 'Já existe um usuário com esse nome.'}
         )
 
-# Cria o usuário
     user = User.objects.create_user(
         username=username,
         first_name=first_name,
@@ -42,7 +40,7 @@ def cadastro(request):
     )
     user.save()
 
-    return HttpResponse('Usuário cadastrado com sucesso!')
+    return redirect('index');
 
 
 def login(request):
@@ -67,5 +65,31 @@ def login(request):
 
 
 def logout_view(request):
-    logout(request)          # Django limpa auth_user_id
+    logout(request)
     return redirect('login')
+
+@login_required
+def listar(request):
+    usuarios = User.objects.all()
+    return render(request, 'usuarios/listar.html', {'usuarios': usuarios})
+
+@login_required
+def detalhar(request, id):
+    usuario = get_object_or_404(User, id=id)
+
+    return render(request, 'usuarios/detalhar.html', {'usuario': usuario})
+
+@login_required
+def editar(request, id):
+    usuario = get_object_or_404(User, id=id)
+
+    if request.method == 'GET':
+        form = UserChangeForm(instance=usuario)
+        return render(request, 'usuarios/form.html', {'form': form, 'usuario': usuario})
+
+    form = UserChangeForm(request.POST, instance=usuario)
+    if form.is_valid():
+        form.save()
+        return redirect('listar_usuarios')
+
+    return render(request, 'usuarios/form.html', {'form': form, 'usuario': usuario})
