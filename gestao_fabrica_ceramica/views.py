@@ -10,16 +10,17 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 @login_required
 def index(request):
-    quantidade = 7 # quantidade de dias a consultar
+    quantidade = 7
     
     cont_funcionarios = Funcionario.objects.filter(status='Ativo').count()
 
     producao = Producao.objects.all()
-    cont_producao = producao.aggregate(total=Sum('quantidade_produzida'))['total'] or 0 # contagem de todos os produtos produzidos
-    contagem = max(producao.count(), 1) # usa 1 caso a contagem seja 0
-    producao_media = floor(cont_producao / contagem) # média da contagem anterior
+    cont_producao = producao.aggregate(total=Sum('quantidade_produzida'))['total'] or 0
+    dias_distintos = producao.values('data').distinct().count()
+    contagem_dias = max(dias_distintos, 1)
+    producao_media = floor(cont_producao / contagem_dias)
 
-    producoes = producao.order_by('data')[:quantidade].values('data').annotate(total=Sum('quantidade_produzida')) # calcula a produção total de cada dia dentro de um perído
+    producoes = producao.order_by('data')[:quantidade].values('data').annotate(total=Sum('quantidade_produzida')) 
 
     for p in producoes:
         p['data'] = p['data'].strftime("%d/%m")

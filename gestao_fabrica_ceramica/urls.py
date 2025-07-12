@@ -34,8 +34,3 @@ urlpatterns = [
     path('produto/', include('produto.urls')),
     path('producao/', include('producao.urls')),
 ]
-
-
-# garante que imagens e arquivos enviados sejam acessíveis em modo DEBUG
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

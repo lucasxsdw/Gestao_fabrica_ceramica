@@ -34,7 +34,6 @@ class Funcionario(models.Model):
     data_admissao = models.DateField(verbose_name="Data de admissão")
     frequencia_pagamento = models.CharField(max_length=14,choices=FREQUENCIA_PAGAMENTO_CHOICES, verbose_name="Frequência de pagamento")
     status = models.CharField(max_length=10,choices=STATUS_CHOICES, verbose_name="Status")
-    foto = models.ImageField(upload_to='fotos_funcionarios/', blank=True, null=True, verbose_name='Foto')
 
     def __str__(self):
         return self.nome

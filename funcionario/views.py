@@ -17,7 +17,7 @@ def listar_funcionarios(request):
 @login_required
 def add_Func(request):
     if request.method == 'POST':
-        form = FuncionarioForm(request.POST, request.FILES)
+        form = FuncionarioForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, "Funcionário adicionado com sucesso!")
@@ -33,7 +33,7 @@ def add_Func(request):
 def editar_func(request, id):
     func = get_object_or_404(Funcionario, pk=id)
     if request.method == 'POST':
-        form = FuncionarioForm(request.POST, request.FILES, instance=func)
+        form = FuncionarioForm(request.POST, instance=func)
         if form.is_valid():
              form.save()
              messages.success(request, "Funcionário editado com sucesso!")

@@ -3,15 +3,15 @@ const dataInicial = document.querySelector("#data-inicial");
 const dataFinal = document.querySelector("#data-final");
 const botaoFiltrar = document.querySelector("#filtrar");
 
-const tabela = $('#dataTableNoSearch').DataTable({
+const tabela = $('#dataTable2').DataTable({
     language: {
-        url: '//cdn.datatables.net/plug-ins/2.3.2/i18n/pt-BR.json',
+        url: '/static/vendor/datatables/pt-BR.json'
     }
 });
 
-let botaoVer = id => `<a href="/producao/${id}" class="btn btn-warning btn-sm mx-1" aria-label="Ver"><i class="fas fa-eye"></i></a>`;
-let botaoEditar = id => `<a href="/producao/editar/${id}/" class="btn btn-info btn-sm mx-1" aria-label="Editar"><i class="fas fa-edit"></i></a>`;
-let botaoExcluir = id => `<button class="btn btn-danger btn-sm mx-1" aria-label="Excluir" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url="/producao/excluir/${id}/"><i class="fas fa-trash"></i></button>`;
+const botaoVer = id => `<a href="/producao/${id}" class="btn btn-warning btn-sm mx-1" aria-label="Ver"><i class="fas fa-eye"></i></a>`;
+const botaoEditar = id => `<a href="/producao/editar/${id}/" class="btn btn-info btn-sm mx-1" aria-label="Editar"><i class="fas fa-edit"></i></a>`;
+const botaoExcluir = id => `<button class="btn btn-danger btn-sm mx-1" aria-label="Excluir" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url="/producao/excluir/${id}/"><i class="fas fa-trash"></i></button>`;
 
 botaoFiltrar.addEventListener('click', () => {
     const parametros = new URLSearchParams();
