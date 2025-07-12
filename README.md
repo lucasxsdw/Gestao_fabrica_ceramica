@@ -1,6 +1,6 @@
 # 🏭 Sistema de gestão de fábrica de cerâmica
 
-Este é um sistema web desenvolvido com Django para gerenciar uma fábrica de cerâmica. Ele permite o controle de funcionários, pagamentos, presenças e materiais.
+Este é um sistema web desenvolvido com Django para gerenciar uma fábrica de cerâmica. Ele permite o controle de funcionários, pagamentos, empréstimo , produção e materiais.
 
 ---
 
