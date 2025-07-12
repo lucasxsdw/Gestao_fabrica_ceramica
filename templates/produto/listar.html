@@ -21,7 +21,6 @@
                         <tr>
                             <th>Nome</th>
                             <th>Preço unitário</th>
-                            
                             <th class="w-25">Ações</th>
                         </tr>
                     </thead>
@@ -29,9 +28,8 @@
                         {% for produto in produtos %}
                             <tr>
                                 <td>{{ produto.nome }}</td>
-                                <td class="font-weight-bold text-success">R$ {{ produto.preco_unitario }}</td>
-                                
-                                <td class="d-flex justify-content-center align-items-center gap-1">
+                                <td class="font-weight-bold text-success">R$ {{ produto.preco_unitario }}</td>       
+                                <td class="d-flex justify-content-center align-items-center">
                                     <a href="{% url 'detalhar_produto' produto.id %}" class="btn btn-warning btn-sm mx-1" aria-label="Ver">
                                         <i class="fas fa-eye"></i>
                                     </a>

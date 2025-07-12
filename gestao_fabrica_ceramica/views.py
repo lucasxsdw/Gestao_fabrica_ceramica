@@ -15,7 +15,7 @@ def index(request):
     cont_funcionarios = Funcionario.objects.filter(status='Ativo').count()
 
     producao = Producao.objects.all()
-    cont_producao = producao.aggregate(total=Sum('quantidade_produzida'))['total'] # contagem de todos os produtos produzidos
+    cont_producao = producao.aggregate(total=Sum('quantidade_produzida'))['total'] or 0 # contagem de todos os produtos produzidos
     contagem = max(producao.count(), 1) # usa 1 caso a contagem seja 0
     producao_media = floor(cont_producao / contagem) # média da contagem anterior
 

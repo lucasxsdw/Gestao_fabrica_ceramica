@@ -45,16 +45,14 @@
 
     <div class="card mt-4">
         <div class="card-body">
-            <div class="mt-4">
-                <div class="d-flex justify-content-between my-4">
-                    <h2 class="h3 font-weight-bold">Histórico de produção</h2>
-                    </div>
+            <h2 class="h3 font-weight-bold">Histórico de produção</h2>
+            <div class="table-responsive">
                 <table class="table" id="dataTable">
                     <thead>
                         <tr>
                             <td>Data</td>
                             <td>Quantidade</td>
-                            <td>Ações</td>
+                            <td class="w-25">Ações</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,9 +60,9 @@
                             <tr>
                                 <td>{{ producao.data|date:"d/m/Y" }}</td>
                                 <td>{{ producao.quantidade_produzida }}</td>
-                                <td>
+                                <td class="d-flex justify-content-center align-items-center">
                                     <a href="{% url 'editar_producao' producao.id %}"
-                                     class="btn btn-info btn-sm mx-1" aria-label="Editar">
+                                    class="btn btn-info btn-sm mx-1" aria-label="Editar">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <button class="btn btn-danger btn-sm mx-1" aria-label="Excluir" data-toggle="modal"
@@ -72,7 +70,6 @@
                                         data-url="{% url 'excluir_producao' producao.id %}">
                                         <i class="fas fa-trash"></i>
                                     </button>
-
                                 </td>
                             </tr>
                         {% endfor %}
