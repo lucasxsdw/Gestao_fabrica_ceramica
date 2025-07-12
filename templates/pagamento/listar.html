@@ -37,7 +37,7 @@
                     {% for pagamento in pagamentos %}
                     <tr>
                         <td>{{ pagamento.funcionario.nome }}</td>
-                        <td>{{ pagamento.data_pagamento|date:"d \d\e F \d\e Y" }}</td>
+                        <td>{{ pagamento.data_pagamento|date:"d/m/Y" }}</td>
                         <td>R$ {{ pagamento.funcionario.salario }}</td>
                         <td>R$ {{ pagamento.vale_desconto }}</td>
                         <td>R$ {{ pagamento.bonus_comissao }}</td>

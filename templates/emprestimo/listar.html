@@ -32,8 +32,8 @@
                             <tr>
                                 <td>{{ emprestimo.funcionario.nome }}</td>
                                 <td>{{ emprestimo.material.nome }}</td>
-                                <td>{{ emprestimo.data_emprestimo }}</td>
-                                <td>{{ emprestimo.data_devolucao }}</td>
+                                <td>{{ emprestimo.data_emprestimo|date:"d/m/Y" }}</td>
+                                <td>{{ emprestimo.data_devolucao|date:"d/m/Y" }}</td>
                                 <td>{{ emprestimo.status }}</td>
                                 <td class="d-flex justify-content-center align-items-center gap-1">
                                     <a href="{% url 'detalhar_emprestimo' emprestimo.id %}" class="btn btn-warning btn-sm mx-1" aria-label="Ver">

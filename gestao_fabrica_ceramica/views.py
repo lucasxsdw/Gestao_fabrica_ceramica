@@ -6,7 +6,9 @@ from funcionario.models import Funcionario
 from emprestimo.models import Emprestimo
 from material.models import Material
 from math import floor
+from django.contrib.auth.decorators import login_required, permission_required
 
+@login_required
 def index(request):
     quantidade = 7 # quantidade de dias a consultar
     
@@ -24,7 +26,7 @@ def index(request):
 
     producoes_por_produto = producao[:quantidade].values('produto__nome').annotate(total=Sum('quantidade_produzida'))
 
-    cont_emprestimos = Emprestimo.objects.filter(status='Pendente').count()
+    cont_emprestimos = Emprestimo.objects.filter(status='pendente').count()
 
     cont_materiais = Material.objects.aggregate(total=Sum('quantidade'))['total']
 
