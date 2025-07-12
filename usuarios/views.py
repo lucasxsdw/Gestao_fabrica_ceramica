@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth import authenticate, login as login_django, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import get_object_or_404
 
 def cadastro(request):
@@ -69,17 +69,19 @@ def logout_view(request):
     return redirect('login')
 
 @login_required
+@permission_required('usuarios.view_user', raise_exception=True)
 def listar(request):
     usuarios = User.objects.all()
     return render(request, 'usuarios/listar.html', {'usuarios': usuarios})
 
-@login_required
+""" @login_required
 def detalhar(request, id):
     usuario = get_object_or_404(User, id=id)
 
-    return render(request, 'usuarios/detalhar.html', {'usuario': usuario})
+    return render(request, 'usuarios/detalhar.html', {'usuario': usuario}) """
 
 @login_required
+@permission_required('usuarios.change_user', raise_exception=True)
 def editar(request, id):
     usuario = get_object_or_404(User, id=id)
 
@@ -93,3 +95,10 @@ def editar(request, id):
         return redirect('listar_usuarios')
 
     return render(request, 'usuarios/form.html', {'form': form, 'usuario': usuario})
+
+@login_required
+@permission_required('usuarios.delete_user', raise_exception=True)
+def excluir(request, id):
+    usuario = get_object_or_404(User, id=id)
+    usuario.delete()
+    return redirect('listar_usuarios')
