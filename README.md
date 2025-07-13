@@ -51,7 +51,7 @@ pip install -r requirements.txt
 Crie as tabelas no banco de dados com os seguintes comandos:
 
 ```bash
-python manage.py makemigrations
+python manage.py makemigrations funcionario material pagamento producao produto emprestimo
 python manage.py migrate
 ```
 
