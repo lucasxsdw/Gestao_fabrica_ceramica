@@ -5,55 +5,56 @@ from producao.models import Producao
 from .forms import ProdutoForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-@login_required
-@permission_required('produto.view_produto', raise_exception=True)
-def listar(request):
-    produtos = Produto.objects.all()
-    return render(request, 'produto/listar.html', {'produtos': produtos})
 
-@login_required
-@permission_required('produto.detail_produto', raise_exception=True)
-def detalhar(request, id):
-    produto = get_object_or_404(Produto, id=id)
-    producoes = Producao.objects.filter(produto=id).order_by('-data')
-    contexto = {
-        'produto': produto,
-        'producoes': producoes
-    }
-    return render(request, 'produto/detalhar.html', contexto)
+class ProdutoListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    model = Produto
+    template_name = 'produto/listar.html'
+    context_object_name = 'produtos'
+    permission_required = 'produto.view_produto'
+    ordering = ['-id']
 
-@login_required
-@permission_required('produto.add_produto', raise_exception=True)
-def adicionar(request):
-    if request.method == 'POST':
-        form = ProdutoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Produto adicionado com sucesso!")
-            return redirect('listar_produtos')
-    else:
-        form = ProdutoForm()
-    return render(request, 'produto/form.html', {'form': form})
 
-@login_required
-@permission_required('produto.change_produto', raise_exception=True)
-def editar(request, id):
-    produto = get_object_or_404(Produto, id=id)
-    if request.method == 'POST':
-        form = ProdutoForm(request.POST, instance=produto)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Produto editado com sucesso!")
-            return redirect('listar_produtos')
-    else:
-        form = ProdutoForm(instance=produto)
-    return render(request, 'produto/form.html', {'form': form})
+class ProdutoDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+    model = Produto
+    template_name = 'produto/detalhar.html'
+    context_object_name = 'produto'
+    permission_required = 'produto.view_produto'
 
-@login_required
-@permission_required('produto.delete_produto', raise_exception=True)
-def excluir(request, id):
-    produto = get_object_or_404(Produto, id=id)
-    produto.delete()
-    messages.success(request, "Produto excluído com sucesso!")
-    return redirect('listar_produtos')
+
+class ProdutoCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    model = Produto
+    form_class = ProdutoForm
+    template_name = 'produto/form.html'
+    success_url = reverse_lazy('listar_produtos')
+    permission_required = 'produto.add_produto'
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Produto adicionado com sucesso!')
+        return super().form_valid(form)
+
+
+class ProdutoUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    model = Produto
+    form_class = ProdutoForm
+    template_name = 'produto/form.html'
+    success_url = reverse_lazy('listar_produtos')
+    permission_required = 'produto.change_produto'
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Produto editado com sucesso!')
+        return super().form_valid(form)
+
+
+class ProdutoDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    model = Produto
+    template_name = 'confirm_delete.html'  
+    success_url = reverse_lazy('listar_produtos')
+    permission_required = 'produto.delete_produto'
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, 'Produto excluído com sucesso!')
+        return super().delete(request, *args, **kwargs)
