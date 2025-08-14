@@ -16,7 +16,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2 text-center">
-                        <div class="h4 mt-0 font-weight-bold text-gray-800">{{ cont_funcionarios }}</div>
+                        <div class="h4 mt-0 font-weight-bold text-gray-800">{{ cont_funcionarios|default:"0" }}</div>
                         <div class="text-sm font-weight-bold text-warning text-uppercase mt-1">
                             Funcionários ativos
                         </div>
@@ -31,7 +31,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2 text-center">
-                        <div class="h4 mt-0 font-weight-bold text-gray-800">{{ producao_media }}</div>
+                        <div class="h4 mt-0 font-weight-bold text-gray-800">{{ producao_media|default:"0" }}</div>
                         <div class="text-sm font-weight-bold text-info text-uppercase mt-1">
                             Produção média diária
                         </div>
@@ -46,7 +46,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2 text-center">
-                        <div class="h4 mt-0 font-weight-bold text-gray-800">{{ cont_materiais }}</div>
+                        <div class="h4 mt-0 font-weight-bold text-gray-800">{{ cont_materiais|default:"0" }}</div>
                         <div class="text-sm font-weight-bold text-primary text-uppercase mt-1">
                             Materiais registrados
                         </div>
@@ -61,7 +61,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2 text-center">
-                        <div class="h4 mt-0 font-weight-bold text-gray-800">{{ cont_emprestimos }}</div>
+                        <div class="h4 mt-0 font-weight-bold text-gray-800">{{ cont_emprestimos|default:"0" }}</div>
                         <div class="text-sm font-weight-bold text-success text-uppercase mt-1">
                             Devoluções pendentes
                         </div>

@@ -20,6 +20,14 @@ const graficoDeBarras = new Chart(grafico1, {
   },
   options: {
     maintainAspectRatio: false,
+    scales: {
+      yAxes: [{
+        display: true,
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    },
     legend:{
       display: true
     },
