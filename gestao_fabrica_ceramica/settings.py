@@ -31,6 +31,15 @@ ALLOWED_HOSTS = []
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+#Configura o DRF para usar JWT
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -51,6 +60,10 @@ INSTALLED_APPS = [
     'usuarios',
     'produto',
     'producao',
+
+    'rest_framework',
+    'drf_yasg',
+
 ]
 
 MIDDLEWARE = [
