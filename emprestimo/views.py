@@ -1,56 +1,39 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
 from .models import Emprestimo
 from .forms import EmprestimoForm
-from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 
-@login_required
-@permission_required('emprestimo.view_emprestimo', raise_exception=True)
-def listar(request):
-    emprestimos = Emprestimo.objects.all()
-    return render(request, 'emprestimo/listar.html', {'emprestimos': emprestimos})
+from django.views.generic import ListView, DetailView, CreateView , UpdateView, DeleteView
 
-@login_required
-@permission_required('emprestimo.detail_emprestimo', raise_exception=True)
-def detalhar(request, id):
-    emprestimo = get_object_or_404(Emprestimo, id=id)
-    return render(request, 'emprestimo/detalhar.html', {'emprestimo': emprestimo})
+class EmprestimoListView(ListView):
+     model = Emprestimo
+     template_name = 'emprestimo/listar.html'
+     context_object_name = 'emprestimos'
 
-@login_required
-@permission_required('emprestimo.add_emprestimo', raise_exception=True)
-def adicionar(request):
-    if request.method == 'POST':
-        form = EmprestimoForm(request.POST)
-        if form.is_valid():
-            emprestimo = form.save(commit=False)
-            emprestimo.definir_data_devolucao()
-            emprestimo.save()
-            messages.success(request, "Empréstimo adicionado com sucesso!")
-            return redirect('listar_emprestimos')
-    else:
-        form = EmprestimoForm()
-    return render(request, 'emprestimo/form.html', {'form': form})
+class EmprestimoDetailView(DetailView):
+    model = Emprestimo
+    template_name = 'emprestimo/detalhar.html'
+    context_object_name = 'emprestimo'
+    
+class EmprestimoCreateView(CreateView):
+    model = Emprestimo
+    form_class = EmprestimoForm
+    template_name = 'emprestimo/form.html'
+    success_url  = reverse_lazy('emprestimo:listar_emprestimos') 
 
-@login_required
-@permission_required('emprestimo.change_emprestimo', raise_exception=True)
-def editar(request, id):
-    emprestimo = get_object_or_404(Emprestimo, id=id)
-    if request.method == 'POST':
-        form = EmprestimoForm(request.POST, instance=emprestimo)
-        if form.is_valid():
-            emprestimo = form.save(commit=False)
-            emprestimo.definir_data_devolucao()
-            emprestimo.save()
-            messages.success(request, "Empréstimo editado com sucesso!")
-            return redirect('listar_emprestimos')
-    else:
-        form = EmprestimoForm(instance=emprestimo)
-    return render(request, 'emprestimo/form.html', {'form': form})
+class EmprestimoUpdateView(UpdateView):
+    model = Emprestimo
+    form_class = EmprestimoForm
+    template_name = 'emprestimo/form.html'
+    success_url  = reverse_lazy('emprestimo:listar_emprestimos') 
 
-@login_required
-@permission_required('emprestimo.delete_emprestimo', raise_exception=True)
-def excluir(request, id):
-    emprestimo = get_object_or_404(Emprestimo, id=id)
-    emprestimo.delete()
-    messages.success(request, "Empréstimo excluído com sucesso!")
-    return redirect('listar_emprestimos')
+class EmprestimoDeleteView(DeleteView):
+    model = Emprestimo
+    template_name = 'confirmar_exclusao.html'
+    success_url = reverse_lazy('emprestimo:listar_emprestimos')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['cancel_url'] = self.success_url  # define the cancel URL
+        return context

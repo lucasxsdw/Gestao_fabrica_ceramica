@@ -43,6 +43,8 @@ INSTALLED_APPS = [
 
     "crispy_forms",
     "crispy_bootstrap4",
+    "widget_tweaks",
+
 
     'funcionario',
     'pagamento',
@@ -51,6 +53,7 @@ INSTALLED_APPS = [
     'usuarios',
     'produto',
     'producao',
+    
 ]
 
 MIDDLEWARE = [

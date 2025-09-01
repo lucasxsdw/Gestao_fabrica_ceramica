@@ -51,12 +51,14 @@
                                 {% endif %}
 
                                  {% if perms.funcionario.excluir_funcionario %}
-                                    <a href="{%  url 'funcionario:excluir_funcionario' funcionario.id %}"  class="btn btn-danger btn-sm mx-1" aria-label="Excluir"
-                                            data-toggle="modal"
-                                            data-target="#modalConfirmacaoExclusao"
-                                            data-url="{% url 'funcionario:excluir_funcionario' funcionario.id %}">
+                                  <button type="button"
+                                        class="btn btn-danger btn-sm mx-1"
+                                        data-toggle="modal"
+                                        data-target="#modalConfirmacaoExclusao"
+                                        data-url="{% url 'funcionario:excluir_funcionario' funcionario.id %}"
+                                        aria-label="Excluir">
                                         <i class="fas fa-trash"></i>
-                                    </a>
+                                  </button>
                                 {% endif %}
                               </td>
 

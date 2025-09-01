@@ -1,59 +1,50 @@
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.http import JsonResponse
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Material
-from .forms import MaterialForm
-from django.contrib.auth.decorators import login_required, permission_required
+from django.shortcuts import get_object_or_404
 from django.contrib import messages
 
-@login_required
-@permission_required('material.view_material', raise_exception=True)
-def listar(request):
-    materiais = Material.objects.all()
-    return render(request, 'material/listar.html', {'materiais': materiais})
-
-@login_required
-@permission_required('material.detail_material', raise_exception=True)
-def detalhar(request, id):
-    material = get_object_or_404(Material, id=id)
-    return render(request, 'material/detalhar.html', {'material': material})
-
-@login_required
-@permission_required('material.add_material', raise_exception=True)
-def adicionar(request):
-    if request.method == 'POST':
-        form = MaterialForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('listar_materiais')
-    else:
-        form = MaterialForm()
-    return render(request, 'material/form.html', {'form': form})
+from .models import Material
+from .forms import MaterialForm
 
 
-@login_required
-@permission_required('material.change_material', raise_exception=True)
-def editar(request, id):
-    material = get_object_or_404(Material, id=id)
-    if request.method == 'POST':
-        form = MaterialForm(request.POST, instance=material)
-        if form.is_valid():
-            form.save()
-            return redirect('listar_materiais')
-    else:
-        form = MaterialForm(instance=material)
-    return render(request, 'material/form.html', {'form': form})
-
-@login_required
-@permission_required('material.delete_material', raise_exception=True)
-def excluir(request, id):
-    material = get_object_or_404(Material, id=id)
-    material.delete()
-    return redirect('listar_materiais')
+class MaterialListView(ListView):
+    model = Material
+    template_name = 'material/listar.html'
+    context_object_name = 'materiais'
+    paginate_by = 20  
 
 
-@login_required
-def obter_dias_emprestimo(request, id):
-    material = get_object_or_404(Material, id=id)
-    quantidade_dias = material.dias_de_emprestimo
-    contexto = {'quantidade_dias': quantidade_dias}
-    return JsonResponse(contexto)
+class MaterialDetailView(DetailView):
+    model = Material
+    template_name = 'material/detalhar.html'
+    context_object_name = 'material'
+
+
+class MaterialCreateView(CreateView):
+    model = Material
+    form_class = MaterialForm
+    template_name = 'material/form.html'
+    success_url = reverse_lazy('listar_materiais')
+
+class MaterialUpdateView(UpdateView):
+    model = Material
+    form_class = MaterialForm
+    template_name = 'material/form.html'
+    success_url = reverse_lazy('listar_materiais')
+
+class MaterialDeleteView(DeleteView):
+    model = Material
+    template_name = 'confirmar_exclusao.html'
+    success_url = reverse_lazy('listar_materiais')
+  
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['cancel_url'] = self.success_url  # define the cancel URL
+        return context
+
+class MaterialLoanDaysView(View):
+    """Retorna JSON com dias de empréstimo do material."""
+    def get(self, request, pk):
+        material = get_object_or_404(Material, pk=pk)
+        return JsonResponse({'quantidade_dias': material.dias_de_emprestimo})
