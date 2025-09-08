@@ -8,7 +8,6 @@ from django.contrib import messages
 from django.views.generic import ListView, DetailView, CreateView , UpdateView, DeleteView
 
 
-
 class EmprestimoListView(ListView):
      model = Emprestimo
      template_name = 'emprestimo/listar_emprestimos.html'

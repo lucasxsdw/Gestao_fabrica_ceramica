@@ -55,6 +55,11 @@ urlpatterns = [
     path('produto/', include('produto.urls')),
     path('producao/', include('producao.urls')),
 
+    
+    
+    # Rotas OAuth2
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+
      # jwt
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
