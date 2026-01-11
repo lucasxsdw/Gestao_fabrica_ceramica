@@ -9,11 +9,11 @@
                 <h1 class="h2 text-dafont-weight-bold m-0">Material</h1>
             </div>
             <div>
-                <a class="btn btn-info my-2" href="{% url 'editar_material' material.id %}">
+                <a class="btn btn-info my-2" href="{% url 'material:editar_material' material.pk %}">
                     <i class="fas fa-edit fa-xs"></i>
                     Editar
                 </a>
-                <button class="btn btn-danger my-2" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'excluir_material' material.id %}'>
+                <button class="btn btn-danger my-2" data-toggle="modal" data-target="#modalConfirmacaoExclusao" data-url='{% url 'material:excluir_material' material.pk %}'>
                     <i class="fas fa-trash fa-xs"></i>
                     Excluir
                 </button>

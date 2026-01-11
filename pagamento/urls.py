@@ -1,14 +1,22 @@
 from django.urls import path
 from . import views
+from .views import (
+    PagamentoListView,
+    PagamentoDetailView,
+    PagamentoCreateView,
+    PagamentoUpdateView,
+    PagamentoDeleteView,
+)
+
 
 app_name = 'pagamento'
 
 urlpatterns = [
-    path('', views.listar, name='listar_pagamentos'),
-    path('<int:id>', views.detalhar, name='detalhar_pagamento'),
-    path('adicionar/', views.adicionar, name='adicionar_pagamento'),
-    path('editar/<int:id>', views.editar, name='editar_pagamento'),
-    path('excluir/<int:id>', views.excluir, name='excluir_pagamento'),
+    path('', PagamentoListView.as_view(), name='listar_pagamentos'),
+    path('adicionar/', PagamentoCreateView.as_view(), name='adicionar_pagamento'),
+    path('<int:pk>/', PagamentoDetailView.as_view(), name='detalhar_pagamento'),
+    path('editar/<int:pk>/', PagamentoUpdateView.as_view(), name='editar_pagamento'),
+    path('excluir/<int:pk>/', PagamentoDeleteView.as_view(), name='excluir_pagamento'),
 
     path('toggle/<int:id>/', views.pagamento_toggle, name='pagamento_toggle'),
 ]

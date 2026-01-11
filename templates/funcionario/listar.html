@@ -39,22 +39,22 @@
 
                               <td class="d-flex justify-content-center align-items-center gap-1">
                                  {% if perms.funcionario.detalhes_funcionario %}
-                                    <a href="{% url 'funcionario:detalhes_funcionario' funcionario.id %}" class="btn btn-warning btn-sm mx-1" aria-label="Ver">
+                                    <a href="{% url 'funcionario:detalhes_funcionario' funcionario.pk %}" class="btn btn-warning btn-sm mx-1" aria-label="Ver">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                  {% endif %}
 
                                  {% if perms.funcionario.editar_funcionario %}
-                                    <a href="{% url 'funcionario:editar_funcionario' funcionario.id %}" class="btn btn-info btn-sm mx-1" aria-label="Editar">
+                                    <a href="{% url 'funcionario:editar_funcionario' funcionario.pk %}" class="btn btn-info btn-sm mx-1" aria-label="Editar">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 {% endif %}
 
                                  {% if perms.funcionario.excluir_funcionario %}
-                                    <a href="{%  url 'funcionario:excluir_funcionario' funcionario.id %}"  class="btn btn-danger btn-sm mx-1" aria-label="Excluir"
+                                    <a href="{%  url 'funcionario:excluir_funcionario' funcionario.pk %}"  class="btn btn-danger btn-sm mx-1" aria-label="Excluir"
                                             data-toggle="modal"
                                             data-target="#modalConfirmacaoExclusao"
-                                            data-url="{% url 'funcionario:excluir_funcionario' funcionario.id %}">
+                                            data-url="{% url 'funcionario:excluir_funcionario' funcionario.pk %}">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 {% endif %}
